@@ -1,0 +1,636 @@
+using System;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using DevExpress.Xpo;
+using DevExpress.XtraEditors;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Actions;
+using DevExpress.Persistent.Base;
+using DevExpress.ExpressApp.SystemModule;
+using GAVELISv2.Module.BusinessObjects;
+
+namespace GAVELISv2.Module.Win.Controllers
+{
+    public partial class ProcessDriverDoleAjustmentsDeductionController : ViewController
+    {
+        private SimpleAction processDriverNonDoleAjustmentsDeduction;
+        private DriverPayrollBatch3 _DriverPayrollBatch;
+        private System.ComponentModel.BackgroundWorker _BgWorker;
+        private ProgressForm _FrmProgress;
+        public ProcessDriverDoleAjustmentsDeductionController()
+        {
+            this.TargetObjectType = typeof(DriverPayrollBatch3);
+            this.TargetViewType = ViewType.DetailView;
+            string actionID = "DriverPayrollBatch3.ProcessDriverDoleAjustmentsDeduction";
+            this.processDriverNonDoleAjustmentsDeduction = new SimpleAction(this,
+            actionID, PredefinedCategory.RecordEdit);
+            this.processDriverNonDoleAjustmentsDeduction.TargetObjectsCriteria = "[Status] = 'Current'";
+            this.processDriverNonDoleAjustmentsDeduction.Caption = "Process Adjustments/Deduction";
+            this.processDriverNonDoleAjustmentsDeduction.Execute += new
+            SimpleActionExecuteEventHandler(
+            processDriverPayroll_Execute);
+        }
+        private void processDriverPayroll_Execute(object sender,
+        SimpleActionExecuteEventArgs e)
+        {
+            _DriverPayrollBatch = ((DevExpress.ExpressApp.DetailView)this.View).CurrentObject as DriverPayrollBatch3;
+
+            ObjectSpace.CommitChanges();
+
+            if (_DriverPayrollBatch.DriverPayrolls3.Count == 0)
+            {
+                throw new ApplicationException("There are no records to process.");
+            }
+
+            _FrmProgress = new ProgressForm("Processing data...", _DriverPayrollBatch.DriverPayrolls3.Count,
+            "Data processed {0} of {1} ");
+            _FrmProgress.CancelClick += FrmProgressCancelClick;
+            _BgWorker = new System.ComponentModel.BackgroundWorker
+            {
+                WorkerSupportsCancellation = true,
+                WorkerReportsProgress = true
+            };
+            _BgWorker.RunWorkerCompleted += BgWorkerRunWorkerCompleted;
+            _BgWorker.ProgressChanged += BgWorkerProgressChanged;
+            _BgWorker.DoWork += BgWorkerDoWork;
+            _BgWorker.RunWorkerAsync(_DriverPayrollBatch.DriverPayrolls3);
+            _FrmProgress.ShowDialog();
+        }
+        private string _message;
+        private void BgWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            int index = 0;
+            UnitOfWork session = CreateUpdatingSession();
+            IList<DriverPayroll3> _included = (IList<DriverPayroll3>)e.Argument;
+            try
+            {
+                DriverPayrollBatch3 dpb = session.GetObjectByKey<DriverPayrollBatch3>(_DriverPayrollBatch.Oid);
+                foreach (var item in _included)
+                {
+                    index++;
+                    _message = string.Format("Processing {0} succesfull.",
+                    item.Oid);
+                    _BgWorker.ReportProgress(1, _message);
+
+                    #region Algorithms here...
+
+                    DriverPayroll3 dpr3 = session.GetObjectByKey<DriverPayroll3>(item.Oid);
+                    #region Incentives here...
+                    if (dpr3.Employee.EmpIncentives.Count > 0)
+                    {
+                        foreach (var inc in dpr3.Employee.EmpIncentives)
+                        {
+                            if (inc.OnlyInBatch != null && inc.OnlyInBatch != dpb.BatchType)
+                            {
+                                continue;
+                            }
+                            string lid = string.Format("0{0}-{1}", dpr3.Oid, inc.Oid);
+                            DriverPayrollAdjustment3 dpa = session.FindObject<DriverPayrollAdjustment3>(CriteriaOperator.Parse("[LineID]=?", lid));
+                            if (dpa == null)
+                            {
+                                dpa = ReflectionHelper.CreateObject<DriverPayrollAdjustment3>(session);
+                                dpa.LineID = lid;
+                                dpa.Include = true;
+                                dpa.DriverPayrollID = dpr3;
+                                dpa.Amount = inc.Amount;
+                            }
+                            dpa.Employee = dpr3.Employee;
+                            dpa.AdjustmentType = inc.AdjustmentType;
+                            dpa.Explanation = !string.IsNullOrEmpty(inc.Explanation) ? inc.Explanation : inc.AdjustmentType.Description;
+                            dpa.AutoGenerated = true;
+                            //if (AlterValue(dpa.Amount))
+                            //{
+                            //    dpa.Amount = inc.Amount;
+                            //}
+                            dpa.Save();
+                        }
+                    }
+                    #endregion
+
+                    #region Premiums here...
+                    if (dpb.BatchType.IncludePremiums)
+                    {
+                        foreach (var prms in dpr3.Employee.EmployeePremiums)
+                        {
+                            string lid = string.Format("1{0}-{1}", dpr3.Oid, prms.Oid);
+                            DriverPayrollDeduction3 dpd = session.FindObject<DriverPayrollDeduction3>(CriteriaOperator.Parse("[LineID]=?", lid));
+                            if (dpd == null)
+                            {
+                                dpd = ReflectionHelper.CreateObject<DriverPayrollDeduction3>(session);
+                                dpd.LineID = lid;
+                                dpd.DedId = prms.Oid;
+                                dpd.Include = true;
+                                dpd.Amount = prms.Amount;
+                            }
+                            dpd.DriverPayrollID = dpr3;
+                            dpd.Employee = dpr3.Employee;
+                            dpd.DeductionType = DeductionType.Premium;
+                            dpd.DeductionName = prms.PremiumCode.Description;
+                            if (dpb.PeriodStart.Month == 1)
+                                dpd.Month = MonthsEnum.January;
+                            if (dpb.PeriodStart.Month == 2)
+                                dpd.Month = MonthsEnum.February;
+                            if (dpb.PeriodStart.Month == 3)
+                                dpd.Month = MonthsEnum.March;
+                            if (dpb.PeriodStart.Month == 4)
+                                dpd.Month = MonthsEnum.April;
+                            if (dpb.PeriodStart.Month == 5)
+                                dpd.Month = MonthsEnum.May;
+                            if (dpb.PeriodStart.Month == 6)
+                                dpd.Month = MonthsEnum.June;
+                            if (dpb.PeriodStart.Month == 7)
+                                dpd.Month = MonthsEnum.July;
+                            if (dpb.PeriodStart.Month == 8)
+                                dpd.Month = MonthsEnum.August;
+                            if (dpb.PeriodStart.Month == 9)
+                                dpd.Month = MonthsEnum.September;
+                            if (dpb.PeriodStart.Month == 10)
+                                dpd.Month = MonthsEnum.October;
+                            if (dpb.PeriodStart.Month == 11)
+                                dpd.Month = MonthsEnum.November;
+                            if (dpb.PeriodStart.Month == 12)
+                                dpd.Month = MonthsEnum.December;
+                            dpd.Caption = string.Format("{0}|{1}", prms.PremiumCode.Description, dpd.MonthStr);
+                            //if (AlterValue(dpd.Amount))
+                            //{
+                            //    dpd.Amount = prms.Amount;
+                            //}
+                            dpd.Save();
+                        }
+                    }
+                    #endregion
+
+                    #region EveryPayroll here...
+
+                    foreach (var lns in dpr3.Employee.EmpLoans)
+                    {
+                        if (!lns.LoanCode.EveryPayrollDeduction)
+                        {
+                            continue;
+                        }
+                        if (lns.Paid)
+                        {
+                            continue;
+                        }
+                        string lid = string.Format("2{0}-{1}", dpr3.Oid, lns.Oid);
+                        DriverPayrollDeduction3 dpd = session.FindObject<DriverPayrollDeduction3>(CriteriaOperator.Parse("[LineID]=?", lid));
+                        if (dpd == null)
+                        {
+                            dpd = ReflectionHelper.CreateObject<DriverPayrollDeduction3>(session);
+                            dpd.LineID = lid;
+                            dpd.DedId = lns.Oid;
+                            //dpd.Include = true;
+                            if (lns.LoanBalance < lns.Amortization)
+                            {
+                                if (AlterValue(dpd.Amount))
+                                {
+                                    dpd.Amount = lns.LoanBalance;
+                                }
+                                //spd.Amount = lns.LoanBalance;
+                            }
+                            else
+                            {
+                                if (AlterValue(dpd.Amount))
+                                {
+                                    dpd.Amount = lns.Amortization;
+                                }
+                                //spd.Amount = lns.Amortization;
+                            }
+                        }
+                        dpd.DriverPayrollID = dpr3;
+                        dpd.Employee = dpr3.Employee;
+                        dpd.DeductionType = DeductionType.Loan;
+                        dpd.DeductionName = lns.LoanCode.Description;
+                        if (dpb.PeriodStart.Month == 1)
+                            dpd.Month = MonthsEnum.January;
+                        if (dpb.PeriodStart.Month == 2)
+                            dpd.Month = MonthsEnum.February;
+                        if (dpb.PeriodStart.Month == 3)
+                            dpd.Month = MonthsEnum.March;
+                        if (dpb.PeriodStart.Month == 4)
+                            dpd.Month = MonthsEnum.April;
+                        if (dpb.PeriodStart.Month == 5)
+                            dpd.Month = MonthsEnum.May;
+                        if (dpb.PeriodStart.Month == 6)
+                            dpd.Month = MonthsEnum.June;
+                        if (dpb.PeriodStart.Month == 7)
+                            dpd.Month = MonthsEnum.July;
+                        if (dpb.PeriodStart.Month == 8)
+                            dpd.Month = MonthsEnum.August;
+                        if (dpb.PeriodStart.Month == 9)
+                            dpd.Month = MonthsEnum.September;
+                        if (dpb.PeriodStart.Month == 10)
+                            dpd.Month = MonthsEnum.October;
+                        if (dpb.PeriodStart.Month == 11)
+                            dpd.Month = MonthsEnum.November;
+                        if (dpb.PeriodStart.Month == 12)
+                            dpd.Month = MonthsEnum.December;
+                        dpd.Caption = string.Format("{0}|{1}", lns.LoanCode.Code, lns.RefNo);
+                        //if (lns.LoanBalance < lns.Amortization)
+                        //{
+                        //    if (AlterValue(dpd.Amount))
+                        //    {
+                        //        dpd.Amount = lns.LoanBalance;
+                        //    }
+                        //    //spd.Amount = lns.LoanBalance;
+                        //}
+                        //else
+                        //{
+                        //    if (AlterValue(dpd.Amount))
+                        //    {
+                        //        dpd.Amount = lns.Amortization;
+                        //    }
+                        //    //spd.Amount = lns.Amortization;
+                        //}
+                        dpd.RefNo = lns.RefNo;
+                        dpd.Balance = lns.LoanBalance;
+                        dpd.Save();
+                    }
+                    #endregion
+
+                    #region Loans here...
+                    if (dpb.BatchType.IncludeLoans)
+                    {
+                        foreach (var lns in dpr3.Employee.EmpLoans)
+                        {
+                            if (lns.LoanCode.EveryPayrollDeduction)
+                            {
+                                continue;
+                            }
+                            if (lns.Paid)
+                            {
+                                continue;
+                            }
+                            string lid = string.Format("2{0}-{1}", dpr3.Oid, lns.Oid);
+                            DriverPayrollDeduction3 dpd = session.FindObject<DriverPayrollDeduction3>(CriteriaOperator.Parse("[LineID]=?", lid));
+                            if (dpd == null)
+                            {
+                                dpd = ReflectionHelper.CreateObject<DriverPayrollDeduction3>(session);
+                                dpd.LineID = lid;
+                                dpd.DedId = lns.Oid;
+                                //dpd.Include = true;
+                                if (lns.LoanBalance < lns.Amortization)
+                                {
+                                    if (AlterValue(dpd.Amount))
+                                    {
+                                        dpd.Amount = lns.LoanBalance;
+                                    }
+                                    //spd.Amount = lns.LoanBalance;
+                                }
+                                else
+                                {
+                                    if (AlterValue(dpd.Amount))
+                                    {
+                                        dpd.Amount = lns.Amortization;
+                                    }
+                                    //spd.Amount = lns.Amortization;
+                                }
+                            }
+                            dpd.DriverPayrollID = dpr3;
+                            dpd.Employee = dpr3.Employee;
+                            dpd.DeductionType = DeductionType.Loan;
+                            dpd.DeductionName = lns.LoanCode.Description;
+                            if (dpb.PeriodStart.Month == 1)
+                                dpd.Month = MonthsEnum.January;
+                            if (dpb.PeriodStart.Month == 2)
+                                dpd.Month = MonthsEnum.February;
+                            if (dpb.PeriodStart.Month == 3)
+                                dpd.Month = MonthsEnum.March;
+                            if (dpb.PeriodStart.Month == 4)
+                                dpd.Month = MonthsEnum.April;
+                            if (dpb.PeriodStart.Month == 5)
+                                dpd.Month = MonthsEnum.May;
+                            if (dpb.PeriodStart.Month == 6)
+                                dpd.Month = MonthsEnum.June;
+                            if (dpb.PeriodStart.Month == 7)
+                                dpd.Month = MonthsEnum.July;
+                            if (dpb.PeriodStart.Month == 8)
+                                dpd.Month = MonthsEnum.August;
+                            if (dpb.PeriodStart.Month == 9)
+                                dpd.Month = MonthsEnum.September;
+                            if (dpb.PeriodStart.Month == 10)
+                                dpd.Month = MonthsEnum.October;
+                            if (dpb.PeriodStart.Month == 11)
+                                dpd.Month = MonthsEnum.November;
+                            if (dpb.PeriodStart.Month == 12)
+                                dpd.Month = MonthsEnum.December;
+                            dpd.Caption = string.Format("{0}|{1}", lns.LoanCode.Code, lns.RefNo);
+                            //if (lns.LoanBalance < lns.Amortization)
+                            //{
+                            //    if (AlterValue(dpd.Amount))
+                            //    {
+                            //        dpd.Amount = lns.LoanBalance;
+                            //    }
+                            //    //spd.Amount = lns.LoanBalance;
+                            //}
+                            //else
+                            //{
+                            //    if (AlterValue(dpd.Amount))
+                            //    {
+                            //        dpd.Amount = lns.Amortization;
+                            //    }
+                            //    //spd.Amount = lns.Amortization;
+                            //}
+                            dpd.RefNo = lns.RefNo;
+                            dpd.Balance = lns.LoanBalance;
+                            dpd.Save();
+                        }
+                    }
+                    #endregion
+
+                    #region Taxes here...
+                    if (dpb.BatchType.IncludeTax)
+                    {
+                        foreach (var lns in dpr3.Employee.EmpTaxs)
+                        {
+                            if (lns.Paid)
+                            {
+                                continue;
+                            }
+                            string lid = string.Format("3{0}-{1}", dpr3.Oid, lns.Oid);
+                            DriverPayrollDeduction3 dpd = session.FindObject<DriverPayrollDeduction3>(CriteriaOperator.Parse("[LineID]=?", lid));
+                            if (dpd == null)
+                            {
+                                dpd = ReflectionHelper.CreateObject<DriverPayrollDeduction3>(session);
+                                dpd.LineID = lid;
+                                dpd.DedId = lns.Oid;
+                                dpd.Include = true;
+                                if (lns.TaxBalance < lns.Deduction)
+                                {
+                                    if (AlterValue(dpd.Amount))
+                                    {
+                                        dpd.Amount = lns.TaxBalance;
+                                    }
+                                    //spd.Amount = lns.TaxBalance;
+                                }
+                                else
+                                {
+                                    if (AlterValue(dpd.Amount))
+                                    {
+                                        dpd.Amount = lns.Deduction;
+                                    }
+                                    //spd.Amount = lns.Deduction;
+                                }
+                            }
+                            dpd.DriverPayrollID = dpr3;
+                            dpd.Employee = dpr3.Employee;
+                            dpd.DeductionType = DeductionType.Tax;
+                            dpd.DeductionName = lns.TaxCode.Description;
+                            if (dpb.PeriodStart.Month == 1)
+                                dpd.Month = MonthsEnum.January;
+                            if (dpb.PeriodStart.Month == 2)
+                                dpd.Month = MonthsEnum.February;
+                            if (dpb.PeriodStart.Month == 3)
+                                dpd.Month = MonthsEnum.March;
+                            if (dpb.PeriodStart.Month == 4)
+                                dpd.Month = MonthsEnum.April;
+                            if (dpb.PeriodStart.Month == 5)
+                                dpd.Month = MonthsEnum.May;
+                            if (dpb.PeriodStart.Month == 6)
+                                dpd.Month = MonthsEnum.June;
+                            if (dpb.PeriodStart.Month == 7)
+                                dpd.Month = MonthsEnum.July;
+                            if (dpb.PeriodStart.Month == 8)
+                                dpd.Month = MonthsEnum.August;
+                            if (dpb.PeriodStart.Month == 9)
+                                dpd.Month = MonthsEnum.September;
+                            if (dpb.PeriodStart.Month == 10)
+                                dpd.Month = MonthsEnum.October;
+                            if (dpb.PeriodStart.Month == 11)
+                                dpd.Month = MonthsEnum.November;
+                            if (dpb.PeriodStart.Month == 12)
+                                dpd.Month = MonthsEnum.December;
+                            dpd.Caption = string.Format("{0}|{1}", lns.TaxCode.Description, dpd.MonthStr);
+                            //if (lns.TaxBalance < lns.Deduction)
+                            //{
+                            //    if (AlterValue(dpd.Amount))
+                            //    {
+                            //        dpd.Amount = lns.TaxBalance;
+                            //    }
+                            //    //spd.Amount = lns.TaxBalance;
+                            //}
+                            //else
+                            //{
+                            //    if (AlterValue(dpd.Amount))
+                            //    {
+                            //        dpd.Amount = lns.Deduction;
+                            //    }
+                            //    //spd.Amount = lns.Deduction;
+                            //}
+                            dpd.RefNo = lns.Year.ToString();
+                            dpd.Balance = lns.TaxBalance;
+                            dpd.Save();
+                        }
+                    }
+                    #endregion
+
+                    #region Other Deduction
+
+                    if (dpb.BatchType.IncludeOtherDed)
+                    {
+                        foreach (var lns in dpr3.Employee.EmpOtherDeds)
+                        {
+                            if (lns.Paid)
+                            {
+                                continue;
+                            }
+                            string lid = string.Format("4{0}-{1}", dpr3.Oid, lns.Oid);
+                            DriverPayrollDeduction3 dpd = session.FindObject<DriverPayrollDeduction3>(CriteriaOperator.Parse("[LineID]=?", lid));
+                            if (dpd == null)
+                            {
+                                dpd = ReflectionHelper.CreateObject<DriverPayrollDeduction3>(session);
+                                dpd.LineID = lid;
+                                dpd.DedId = lns.Oid;
+                                //dpd.Include = true;
+                                if (lns.Balance < lns.Deduction)
+                                {
+                                    if (AlterValue(dpd.Amount))
+                                    {
+                                        dpd.Amount = lns.Balance;
+                                    }
+                                    //spd.Amount = lns.Balance;
+                                }
+                                else
+                                {
+                                    if (AlterValue(dpd.Amount))
+                                    {
+                                        dpd.Amount = lns.Deduction;
+                                    }
+                                    //spd.Amount = lns.Deduction;
+                                }
+                            }
+                            dpd.DriverPayrollID = dpr3;
+                            dpd.Employee = dpr3.Employee;
+                            dpd.DeductionType = DeductionType.Other;
+                            if (!string.IsNullOrEmpty(lns.Explanation))
+                            {
+                                dpd.DeductionName = lns.DedCode.Code + " | " + lns.Explanation;
+                                dpd.Caption = string.Format("{0}|{1}|{2}", lns.DedCode.Description, lns.EntryDate.ToShortDateString(), lns.RefNo);
+                                //spd.Caption = string.Format("{0}|{1}|{2}-{3}", lns.DedCode.Code, lns.EntryDate.ToShortDateString(), lns.RefNo, lns.Explanation);
+                            }
+                            else
+                            {
+                                dpd.DeductionName = lns.DedCode.Description;
+                                dpd.Caption = string.Format("{0}|{1}|{2}", lns.DedCode.Description, lns.EntryDate.ToShortDateString(), lns.RefNo);
+                            }
+                            if (dpb.PeriodStart.Month == 1)
+                                dpd.Month = MonthsEnum.January;
+                            if (dpb.PeriodStart.Month == 2)
+                                dpd.Month = MonthsEnum.February;
+                            if (dpb.PeriodStart.Month == 3)
+                                dpd.Month = MonthsEnum.March;
+                            if (dpb.PeriodStart.Month == 4)
+                                dpd.Month = MonthsEnum.April;
+                            if (dpb.PeriodStart.Month == 5)
+                                dpd.Month = MonthsEnum.May;
+                            if (dpb.PeriodStart.Month == 6)
+                                dpd.Month = MonthsEnum.June;
+                            if (dpb.PeriodStart.Month == 7)
+                                dpd.Month = MonthsEnum.July;
+                            if (dpb.PeriodStart.Month == 8)
+                                dpd.Month = MonthsEnum.August;
+                            if (dpb.PeriodStart.Month == 9)
+                                dpd.Month = MonthsEnum.September;
+                            if (dpb.PeriodStart.Month == 10)
+                                dpd.Month = MonthsEnum.October;
+                            if (dpb.PeriodStart.Month == 11)
+                                dpd.Month = MonthsEnum.November;
+                            if (dpb.PeriodStart.Month == 12)
+                                dpd.Month = MonthsEnum.December;
+                            //if (lns.Balance < lns.Deduction)
+                            //{
+                            //    if (AlterValue(dpd.Amount))
+                            //    {
+                            //        dpd.Amount = lns.Balance;
+                            //    }
+                            //    //spd.Amount = lns.Balance;
+                            //}
+                            //else
+                            //{
+                            //    if (AlterValue(dpd.Amount))
+                            //    {
+                            //        dpd.Amount = lns.Deduction;
+                            //    }
+                            //    //spd.Amount = lns.Deduction;
+                            //}
+                            dpd.RefNo = lns.RefNo;
+                            dpd.Balance = lns.Balance;
+                            dpd.Save();
+                        }
+                    }
+                    #endregion
+
+                    dpb.Save();
+                    CommitUpdatingSession(session);
+
+                    #endregion
+
+                    if (_BgWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        session.Dispose();
+                        break;
+                    }
+                }
+            }
+            finally
+            {
+                if (index == _included.Count)
+                {
+                    CommitUpdatingSession(session);
+                }
+                session.Dispose();
+            }
+        }
+
+        private bool AlterValue(decimal p)
+        {
+            if (p == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private UnitOfWork CreateUpdatingSession()
+        {
+            UnitOfWork session = new UnitOfWork(((ObjectSpace)ObjectSpace).
+            Session.ObjectLayer);
+            OnUpdatingSessionCreated(session);
+            return session;
+        }
+        private void CommitUpdatingSession(UnitOfWork session)
+        {
+            session.CommitChanges();
+            OnUpdatingSessionCommitted(session);
+        }
+        protected virtual void OnUpdatingSessionCommitted(UnitOfWork session)
+        {
+            if (UpdatingSessionCommitted != null)
+            {
+                UpdatingSessionCommitted(this
+                    , new SessionEventArgs(session));
+            }
+        }
+        protected virtual void OnUpdatingSessionCreated(UnitOfWork session)
+        {
+            if
+                (UpdatingSessionCreated != null)
+            {
+                UpdatingSessionCreated(this, new
+                    SessionEventArgs(session));
+            }
+        }
+
+        private void BgWorkerProgressChanged(object sender,
+        ProgressChangedEventArgs e)
+        {
+            if (_FrmProgress != null)
+            {
+                _FrmProgress.
+                    DoProgress(e.ProgressPercentage);
+            }
+        }
+        private void BgWorkerRunWorkerCompleted(object sender,
+        RunWorkerCompletedEventArgs e)
+        {
+            _FrmProgress.Close();
+            if (e.Cancelled)
+            {
+                XtraMessageBox.Show(
+                    "Processing of adjustments and deductions is cancelled.", "Cancelled",
+                    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                if (e.Error != null)
+                {
+                    XtraMessageBox.Show(e.Error.Message,
+                        "Error", System.Windows.Forms.MessageBoxButtons.OK, System.
+                        Windows.Forms.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    XtraMessageBox.Show(
+                    "Adjustments and deductions has been successfully processed.");
+                    ObjectSpace.Refresh();
+                }
+            }
+        }
+        private void FrmProgressCancelClick(object sender, EventArgs e)
+        {
+            _BgWorker.CancelAsync();
+        }
+        public event EventHandler<SessionEventArgs> UpdatingSessionCreated;
+        public event EventHandler<SessionEventArgs> UpdatingSessionCommitted;
+    }
+}

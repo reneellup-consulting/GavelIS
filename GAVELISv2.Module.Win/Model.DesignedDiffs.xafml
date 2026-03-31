@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Company="RLLLUP Software Consulting" Copyright="@ 2012 RLLLUP Software Consulting" Description="An integrated systems built for GSC GAVEL Enterprises business operations" Subtitle="GAVEL Integrated Systems" Title="GAVEL I.S." WebSite="www.rlllupsoftware.com">
+  <NavigationItems DefaultChildItemsDisplayStyle="List">
+    <Items>
+      <Item Id="Company" Index="0" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@953f865c-ca09-4512-9c03-ceb63e2a38df" ViewId="CompanySnaps" IsNewNode="True" />
+          <Item Id="CompanyFinancials" Caption="Company &amp; Financials" IsNewNode="True" />
+          <Item Id="Contacts" IsNewNode="True" />
+          <Item Id="Documents" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="PurchaseDocuments" Caption="Purchase Documents" IsNewNode="True" />
+              <Item Id="SalesDocuments" Caption="Sales Documents" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="Inventory" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Vendors" Index="1" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@aec4bde1-b697-471d-92de-59aaa947d3eb" ViewId="VendorCenter" IsNewNode="True" />
+          <Item Id="VendorProfilesList" Caption="Vendor Profiles List" IsNewNode="True" />
+          <Item Id="VendorReports" Caption="Vendor Reports" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Customers" Index="2" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@7ccd0c05-3e72-4360-b109-34ea84fe600c" ViewId="CustomerCenter" IsNewNode="True" />
+          <Item Id="CustomerProfilesList" Caption="Customer Profiles List" IsNewNode="True" />
+          <Item Id="CustomerReports" Caption="Customer Reports" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Inventory" Index="3" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="ItemsReports" Caption="Items Reports" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Banking" Index="4" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="BankReports" Caption="Bank Reports" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Reports" Index="5" IsNewNode="True" Removed="True">
+        <Items IsNewNode="True">
+          <Item Id="@51a733e3-d38e-46dd-b52f-7675d3f4a867" ViewId="ReportCenter" IsNewNode="True" />
+          <Item Id="AccountantAndTaxes" Caption="Accountant &amp; Taxes" IsNewNode="True" />
+          <Item Id="Banking" IsNewNode="True" />
+          <Item Id="CompanyAndFinancials" Caption="Company &amp; Financials" IsNewNode="True" />
+          <Item Id="CustomersAndReceivables" Caption="Customers &amp; Receivables" IsNewNode="True" />
+          <Item Id="Items" IsNewNode="True" />
+          <Item Id="Payees" IsNewNode="True" />
+          <Item Id="Sales" IsNewNode="True" />
+          <Item Id="VendorsAndPayables" Caption="Vendors &amp; Payables" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Administration" Index="6" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="KPI" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="KpiDefinition_ListView" ViewId="KpiDefinition_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="KpiScorecard_ListView" ViewId="KpiScorecard_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="Reports" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="Reports" ViewId="ReportData_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="State Machine" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="XpoStateMachine_ListView" ViewId="XpoStateMachine_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="KPI" Removed="True" />
+      <Item Id="State Machine" Removed="True" />
+    </Items>
+  </NavigationItems>
+  <Options FormStyle="Ribbon" Skin="Sharp Plus" UIType="TabbedMDI" />
+  <SchemaModules>
+    <SchemaModule Name="SchedulerModuleBase" Version="11.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerWindowsFormsModule" Version="11.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="11.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="11.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="XpandSystemModule" Version="11.2.5.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DashboardView Id="CompanySnaps" Caption="Company Snaps" IsNewNode="True" />
+    <DashboardView Id="CustomerCenter" Caption="Customer Center" IsNewNode="True" />
+    <DashboardView Id="ReportCenter" Caption="Report Center" IsNewNode="True" />
+    <DashboardView Id="VendorCenter" Caption="Vendor Center" IsNewNode="True" />
+  </Views>
+</Application>

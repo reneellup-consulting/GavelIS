@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{74385B17-26E4-438D-A8C8-00F710E6A5A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GAVELISv2.Module</RootNamespace>
+    <AssemblyName>GAVELISv2.Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\GAVELISv2.Module.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\GAVELISv2.Module.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EasyTest|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\EasyTest\GAVELISv2.Module.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Chart.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.CloneObject.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Kpi.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Reports.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Security.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.StateMachine.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ViewVariantsModule.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Workflow.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v11.2.Core, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v11.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Objects.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Workflow.Activities.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="NCalc">
+      <HintPath>..\..\..\..\RLLLUP Consulting\GAVEL\Source\MyXPand\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Xpand.ExpressApp.ImportWizard">
+      <HintPath>..\..\..\..\RLLLUP Consulting\GAVEL\Source\MyXPand\Xpand.ExpressApp.ImportWizard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessObjects\AddTripsToDriverPayroll3Controller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\AddTripsToDriverPayroll3Controller.Designer.cs">
+      <DependentUpon>AddTripsToDriverPayroll3Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessObjects\CargoCategory.cs" />
+    <Compile Include="BusinessObjects\CombinedTrips.cs" />
+    <Compile Include="BusinessObjects\ContactFileAttachment.cs" />
+    <Compile Include="BusinessObjects\ContactNote.cs" />
+    <Compile Include="BusinessObjects\CurrencyRate.cs" />
+    <Compile Include="BusinessObjects\DayToDayItemRequestDetail.cs" />
+    <Compile Include="BusinessObjects\DayToDayItemRequestHeader.cs" />
+    <Compile Include="BusinessObjects\DolefilTripPaymentsRecon.cs" />
+    <Compile Include="BusinessObjects\DolefilUnpaidTripsReportParam.cs" />
+    <Compile Include="BusinessObjects\DriverDeductionDetails.cs" />
+    <Compile Include="BusinessObjects\DriverPayroll2.cs" />
+    <Compile Include="BusinessObjects\DriverPayroll3.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollAdjustment.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollAdjustment3.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollBatch2.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollBatch3.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollDeduction.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollDeduction3.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollTripLine2.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollTripLine3 .cs" />
+    <Compile Include="BusinessObjects\DriversBonusGeneratorDetail.cs" />
+    <Compile Include="BusinessObjects\DriversBonusGeneratorHeader.cs" />
+    <Compile Include="BusinessObjects\DriversCommision.cs" />
+    <Compile Include="BusinessObjects\DriversEarningFtmDetail.cs" />
+    <Compile Include="BusinessObjects\DriversEarningsFtm.cs" />
+    <Compile Include="BusinessObjects\DtpReconDetail.cs" />
+    <Compile Include="BusinessObjects\ExpenseAnalyticsBuffer.cs" />
+    <Compile Include="BusinessObjects\ExpensesAnalyticsDetails.cs" />
+    <Compile Include="BusinessObjects\ExpensesAnalyticsHeader.cs" />
+    <Compile Include="BusinessObjects\FuelDailyPurchasesPerUnitParam.cs" />
+    <Compile Include="BusinessObjects\FuelPumpRegisterParam.cs" />
+    <Compile Include="BusinessObjects\FuelPurchaseOrder.cs" />
+    <Compile Include="BusinessObjects\FuelPurchaseOrderDetail.cs" />
+    <Compile Include="BusinessObjects\FuelReceiptUsageReportParam.cs" />
+    <Compile Include="BusinessObjects\FuelSoaDetail.cs" />
+    <Compile Include="BusinessObjects\FuelStatementAdjustment.cs" />
+    <Compile Include="BusinessObjects\FuelStatementOfAccount.cs" />
+    <Compile Include="BusinessObjects\FuelStatementPayment.cs" />
+    <Compile Include="BusinessObjects\HaulCategorySet.cs" />
+    <Compile Include="BusinessObjects\HaulCategorySetDetail.cs" />
+    <Compile Include="BusinessObjects\IncExpenseReclass.cs" />
+    <Compile Include="BusinessObjects\IncExpenseReclassDetail.cs" />
+    <Compile Include="BusinessObjects\IncExpForChart.cs" />
+    <Compile Include="BusinessObjects\IncExpForTrucking.cs" />
+    <Compile Include="BusinessObjects\IncExpReport.cs" />
+    <Compile Include="BusinessObjects\IncExpTruckingReport.cs" />
+    <Compile Include="BusinessObjects\ISetIncomeExpense.cs" />
+    <Compile Include="BusinessObjects\ItemMovementFreqAnalDetail.cs" />
+    <Compile Include="BusinessObjects\ItemMovementFreqAnalysis.cs" />
+    <Compile Include="BusinessObjects\ItemsMovedPerWhseQty.cs" />
+    <Compile Include="BusinessObjects\ItemsMovementGroup.cs" />
+    <Compile Include="BusinessObjects\ItemsMovementGroupDetail.cs" />
+    <Compile Include="BusinessObjects\ItemsMovGrpCountDetail.cs" />
+    <Compile Include="BusinessObjects\ItemsMovSelectedWhseDetail.cs" />
+    <Compile Include="BusinessObjects\IToMovementCapable.cs" />
+    <Compile Include="BusinessObjects\IWithLineNumber.cs" />
+    <Compile Include="BusinessObjects\Location.cs" />
+    <Compile Include="BusinessObjects\MoveToMovement.cs" />
+    <Compile Include="BusinessObjects\PartsPurchasesUsageDetail.cs" />
+    <Compile Include="BusinessObjects\PartsPurchasesUsageReporter.cs" />
+    <Compile Include="BusinessObjects\PartsPurchasesUseCode.cs" />
+    <Compile Include="BusinessObjects\PartsUsageIcjDetails.cs" />
+    <Compile Include="BusinessObjects\PayableDocsApplied.cs" />
+    <Compile Include="BusinessObjects\PdcPurchaseReportParam.cs" />
+    <Compile Include="BusinessObjects\PdcSalesReportParam.cs" />
+    <Compile Include="BusinessObjects\PoSyncDeletionsQueue.cs" />
+    <Compile Include="BusinessObjects\PurchaseOrderFuelUsageDetail.cs" />
+    <Compile Include="BusinessObjects\PurchasesMovementAnalysis.cs" />
+    <Compile Include="BusinessObjects\PurchasesMovementAnalysis02.cs" />
+    <Compile Include="BusinessObjects\PurchasesMovementBuffer.cs" />
+    <Compile Include="BusinessObjects\PurchasesMovementSummary.cs" />
+    <Compile Include="BusinessObjects\PurchMovAnaRemInventory.cs" />
+    <Compile Include="BusinessObjects\ReceiptFuelUsageDetail.cs" />
+    <Compile Include="BusinessObjects\RouteSpec.cs" />
+    <Compile Include="BusinessObjects\DayToDayItemReports.cs" />
+    <Compile Include="BusinessObjects\StaffPayrollPayDetail.cs" />
+    <Compile Include="BusinessObjects\StanfilcoTripsPaymentDetailsParam.cs" />
+    <Compile Include="BusinessObjects\TariffRateAdjustmentHistory.cs" />
+    <Compile Include="BusinessObjects\TariffTripCalculationDetail.cs" />
+    <Compile Include="BusinessObjects\ThirteenthGeneratorDetail.cs" />
+    <Compile Include="BusinessObjects\ThirteenthGeneratorHeader.cs" />
+    <Compile Include="BusinessObjects\TransferItemsViewer.cs" />
+    <Compile Include="BusinessObjects\TransferItemsViewerDetail.cs" />
+    <Compile Include="BusinessObjects\TripFuelBatch.cs" />
+    <Compile Include="BusinessObjects\TripsCargoDetail.cs" />
+    <Compile Include="BusinessObjects\TripsCargoDetailUnit.cs" />
+    <Compile Include="BusinessObjects\TripsCargoHeader.cs" />
+    <Compile Include="BusinessObjects\TripsFuelExpenseDetail.cs" />
+    <Compile Include="BusinessObjects\TripsFuelUsageReporter.cs" />
+    <Compile Include="BusinessObjects\TripsIerPerFuelGroup.cs" />
+    <Compile Include="BusinessObjects\TripsIncomeDetail.cs" />
+    <Compile Include="BusinessObjects\TripsIncomeExpenseParam.cs" />
+    <Compile Include="BusinessObjects\TripsIncomeExpenseReporter.cs" />
+    <Compile Include="BusinessObjects\TripType.cs" />
+    <Compile Include="BusinessObjects\UdeclaredLateDtrsDoleParam.cs" />
+    <Compile Include="BusinessObjects\UndeclaredLateDtrsParam.cs" />
+    <Compile Include="BusinessObjects\UnpaidTripsReportParam.cs" />
+    <Compile Include="BusinessObjects\UpdateExpenseType.cs" />
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="WorkingDays.cs" />
+    <Compile Include="BusinessObjects\Account.cs" />
+    <Compile Include="BusinessObjects\AccountGeneralType.cs" />
+    <Compile Include="BusinessObjects\AccountTotalType.cs" />
+    <Compile Include="BusinessObjects\AccountType.cs" />
+    <Compile Include="BusinessObjects\AdjustItemCostPrices.cs" />
+    <Compile Include="BusinessObjects\AdjustItemCostPrices2.cs" />
+    <Compile Include="BusinessObjects\AdjustmentType.cs" />
+    <Compile Include="BusinessObjects\AllUserInfoFromDevice.cs" />
+    <Compile Include="BusinessObjects\APRegistry.cs" />
+    <Compile Include="BusinessObjects\APReportParam.cs" />
+    <Compile Include="BusinessObjects\ARRegistry.cs" />
+    <Compile Include="BusinessObjects\ARReportParam.cs" />
+    <Compile Include="BusinessObjects\AssemblyDetail.cs" />
+    <Compile Include="BusinessObjects\AttendanceCalculator.cs" />
+    <Compile Include="BusinessObjects\AttendanceCalculator02.cs" />
+    <Compile Include="BusinessObjects\AttendanceRecord.cs" />
+    <Compile Include="BusinessObjects\BalanceSheetDetail.cs" />
+    <Compile Include="BusinessObjects\BalanceSheetHeader.cs" />
+    <Compile Include="BusinessObjects\BankReconCheckAndPayment.cs" />
+    <Compile Include="BusinessObjects\BankReconciliation.cs" />
+    <Compile Include="BusinessObjects\BankReconDeposit.cs" />
+    <Compile Include="BusinessObjects\BatteryDettachReason.cs" />
+    <Compile Include="BusinessObjects\BatteryCondition.cs" />
+    <Compile Include="BusinessObjects\BatteryReport.cs" />
+    <Compile Include="BusinessObjects\BatteryRequest.cs" />
+    <Compile Include="BusinessObjects\BatterySell.cs" />
+    <Compile Include="BusinessObjects\BatteryServiceDetail.cs" />
+    <Compile Include="BusinessObjects\Battery.cs" />
+    <Compile Include="BusinessObjects\Bill.cs" />
+    <Compile Include="BusinessObjects\BillDetail.cs" />
+    <Compile Include="BusinessObjects\BiometricDevice.cs" />
+    <Compile Include="BusinessObjects\BusinessCenter.cs" />
+    <Compile Include="BusinessObjects\CalculatedRecord.cs" />
+    <Compile Include="BusinessObjects\CargoRegistry.cs" />
+    <Compile Include="BusinessObjects\CargoSummaryPeriodicReportParam.cs" />
+    <Compile Include="BusinessObjects\CargoSummaryYearlyReportParam.cs" />
+    <Compile Include="BusinessObjects\CargoType.cs" />
+    <Compile Include="BusinessObjects\CargoUOMRelation.cs" />
+    <Compile Include="BusinessObjects\CarryOutDettachedTire.cs" />
+    <Compile Include="BusinessObjects\CarryOutRequest.cs" />
+    <Compile Include="BusinessObjects\CarryOutSellTire.cs" />
+    <Compile Include="BusinessObjects\CashflowSummary.cs" />
+    <Compile Include="BusinessObjects\CashManagementReport.cs" />
+    <Compile Include="BusinessObjects\CashSale.cs" />
+    <Compile Include="BusinessObjects\CashSalesReportParam.cs" />
+    <Compile Include="BusinessObjects\ChargeItem.cs" />
+    <Compile Include="BusinessObjects\CheckDisbursementParam.cs" />
+    <Compile Include="BusinessObjects\CheckInAndOut.cs" />
+    <Compile Include="BusinessObjects\CheckInAndOut02.cs" />
+    <Compile Include="BusinessObjects\CheckInAndOut03.cs" />
+    <Compile Include="BusinessObjects\CheckinCheckoutParam.cs" />
+    <Compile Include="BusinessObjects\CheckPayeeDetail.cs" />
+    <Compile Include="BusinessObjects\CheckPayment.cs" />
+    <Compile Include="BusinessObjects\CheckPaymentDetail.cs" />
+    <Compile Include="BusinessObjects\CheckReceivingParam.cs" />
+    <Compile Include="BusinessObjects\CheckVoucher.cs" />
+    <Compile Include="BusinessObjects\CheckVoucherReportParam.cs" />
+    <Compile Include="BusinessObjects\Collection.cs" />
+    <Compile Include="BusinessObjects\CollectionDetail.cs" />
+    <Compile Include="BusinessObjects\Company.cs" />
+    <Compile Include="BusinessObjects\Contact.cs" />
+    <Compile Include="BusinessObjects\CorrectEntryDate.cs" />
+    <Compile Include="BusinessObjects\CorrectFacilityAndDepartment.cs" />
+    <Compile Include="BusinessObjects\CorrectionWorksheetParam.cs" />
+    <Compile Include="BusinessObjects\CostCenter.cs" />
+    <Compile Include="BusinessObjects\CreditMemo.cs" />
+    <Compile Include="BusinessObjects\CreditMemoDetail.cs" />
+    <Compile Include="BusinessObjects\CreditMemoDetailTrackingLine.cs" />
+    <Compile Include="BusinessObjects\CurrentReceiptReportParam.cs" />
+    <Compile Include="BusinessObjects\Customer.cs" />
+    <Compile Include="BusinessObjects\CustomerClass.cs" />
+    <Compile Include="BusinessObjects\CustomerHistoryParam.cs" />
+    <Compile Include="BusinessObjects\DailyTotalPurchasesReportParam.cs" />
+    <Compile Include="BusinessObjects\DayToDayItemsRequesParam.cs" />
+    <Compile Include="BusinessObjects\DebitMemo.cs" />
+    <Compile Include="BusinessObjects\DebitMemoDetail.cs" />
+    <Compile Include="BusinessObjects\DebitMemoDetailTrackingLine.cs" />
+    <Compile Include="BusinessObjects\Department.cs" />
+    <Compile Include="BusinessObjects\Deposit.cs" />
+    <Compile Include="BusinessObjects\DepositDetail.cs" />
+    <Compile Include="BusinessObjects\DeviceAttendanceLog.cs" />
+    <Compile Include="BusinessObjects\DeviceUser.cs" />
+    <Compile Include="BusinessObjects\DolefilTrip.cs" />
+    <Compile Include="BusinessObjects\DolefilTripCharge.cs" />
+    <Compile Include="BusinessObjects\DolefilTripDetail.cs" />
+    <Compile Include="BusinessObjects\DolefilTripPayment.cs" />
+    <Compile Include="BusinessObjects\DolefilTripStatement.cs" />
+    <Compile Include="BusinessObjects\EmpIncentives.cs" />
+    <Compile Include="BusinessObjects\EmployeeFingerprint.cs" />
+    <Compile Include="BusinessObjects\EmpShiftSchedule.cs" />
+    <Compile Include="BusinessObjects\ExpensePerFacility.cs" />
+    <Compile Include="BusinessObjects\ExpensePerFacilityDetail.cs" />
+    <Compile Include="BusinessObjects\FleetTireReportParam.cs" />
+    <Compile Include="BusinessObjects\FuelDailyPurchasesParam.cs" />
+    <Compile Include="BusinessObjects\FuelOdoRegistry.cs" />
+    <Compile Include="BusinessObjects\FuelPumpRegister.cs" />
+    <Compile Include="BusinessObjects\FuelPumpRegisterDetail.cs" />
+    <Compile Include="BusinessObjects\GensetEntryReportParam.cs" />
+    <Compile Include="BusinessObjects\GensetHoursRegister.cs" />
+    <Compile Include="BusinessObjects\GensetRateRegister.cs" />
+    <Compile Include="BusinessObjects\GensetStanfilcoReportParam.cs" />
+    <Compile Include="BusinessObjects\GrossTaxablePurchasesDetail.cs" />
+    <Compile Include="BusinessObjects\GrossTaxablePurchasesHeader.cs" />
+    <Compile Include="BusinessObjects\GrossTaxableReportParam.cs" />
+    <Compile Include="BusinessObjects\GrossTaxableSalesReportParam.cs" />
+    <Compile Include="BusinessObjects\IncomeAndExpense02.cs" />
+    <Compile Include="BusinessObjects\IncomeExpenseBuffer.cs" />
+    <Compile Include="BusinessObjects\IncomeExpenseReporter.cs" />
+    <Compile Include="BusinessObjects\IncomePerDriverPeriodicReportParam.cs" />
+    <Compile Include="BusinessObjects\IncomePerDriverYearlyReportParam.cs" />
+    <Compile Include="BusinessObjects\InventoryReportActualParam.cs" />
+    <Compile Include="BusinessObjects\DriverClass.cs" />
+    <Compile Include="BusinessObjects\DriverClassification.cs" />
+    <Compile Include="BusinessObjects\DriverMiscellaneousParam.cs" />
+    <Compile Include="BusinessObjects\DriverPayroll.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollBatch.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollTrip.cs" />
+    <Compile Include="BusinessObjects\DriverPayrollTripLine.cs" />
+    <Compile Include="BusinessObjects\DriverRegistry.cs" />
+    <Compile Include="BusinessObjects\EmpLoan.cs" />
+    <Compile Include="BusinessObjects\Employee.cs" />
+    <Compile Include="BusinessObjects\EmployeeChargeSlip.cs" />
+    <Compile Include="BusinessObjects\EmployeeChargeSlipExpenseDetail.cs" />
+    <Compile Include="BusinessObjects\EmployeeChargeSlipItemDetail.cs" />
+    <Compile Include="BusinessObjects\EmployeeClassCode.cs" />
+    <Compile Include="BusinessObjects\EmployeeDeductionLedger.cs" />
+    <Compile Include="BusinessObjects\EmployeeLoan.cs" />
+    <Compile Include="BusinessObjects\EmployeePremium.cs" />
+    <Compile Include="BusinessObjects\EmployeeTax.cs" />
+    <Compile Include="BusinessObjects\EmpOtherDed.cs" />
+    <Compile Include="BusinessObjects\EmpTax.cs" />
+    <Compile Include="BusinessObjects\EnumerationObjects.cs" />
+    <Compile Include="BusinessObjects\ExpensesByVendor.cs" />
+    <Compile Include="BusinessObjects\ExpenseType.cs" />
+    <Compile Include="BusinessObjects\Facility.cs" />
+    <Compile Include="BusinessObjects\FAGeneratorSet.cs" />
+    <Compile Include="BusinessObjects\FAJournalDetail.cs" />
+    <Compile Include="BusinessObjects\FAJournalEntry.cs" />
+    <Compile Include="BusinessObjects\FALandAndBuilding.cs" />
+    <Compile Include="BusinessObjects\FAOther.cs" />
+    <Compile Include="BusinessObjects\FAOtherVehicle.cs" />
+    <Compile Include="BusinessObjects\FAReport.cs" />
+    <Compile Include="BusinessObjects\FATrailer.cs" />
+    <Compile Include="BusinessObjects\FATruck.cs" />
+    <Compile Include="BusinessObjects\FixedAsset.cs" />
+    <Compile Include="BusinessObjects\FlapTubeRim.cs" />
+    <Compile Include="BusinessObjects\FlapTubeRimDetail.cs" />
+    <Compile Include="BusinessObjects\FleetReport.cs" />
+    <Compile Include="BusinessObjects\Form2307ReportParam.cs" />
+    <Compile Include="BusinessObjects\FuelEfficiencyMon.cs" />
+    <Compile Include="BusinessObjects\FuelItem.cs" />
+    <Compile Include="BusinessObjects\FuelMileageRegister.cs" />
+    <Compile Include="BusinessObjects\FuelRegister.cs" />
+    <Compile Include="BusinessObjects\FuelUsageRegistry.cs" />
+    <Compile Include="BusinessObjects\FundTransfer.cs" />
+    <Compile Include="BusinessObjects\GenJournalDetail.cs" />
+    <Compile Include="BusinessObjects\GenJournalHeader.cs" />
+    <Compile Include="BusinessObjects\GensetCharge.cs" />
+    <Compile Include="BusinessObjects\GensetEntry.cs" />
+    <Compile Include="BusinessObjects\GensetPayment.cs" />
+    <Compile Include="BusinessObjects\GensetReason.cs" />
+    <Compile Include="BusinessObjects\GensetSalesRegistry.cs" />
+    <Compile Include="BusinessObjects\GensetStatement.cs" />
+    <Compile Include="BusinessObjects\GensetUsageDetail.cs" />
+    <Compile Include="BusinessObjects\HaulCategory.cs" />
+    <Compile Include="BusinessObjects\HaulType.cs" />
+    <Compile Include="BusinessObjects\Holiday.cs" />
+    <Compile Include="BusinessObjects\HourmeterRegister.cs" />
+    <Compile Include="BusinessObjects\IHPartsSalesRegistry.cs" />
+    <Compile Include="BusinessObjects\IncomeAndExpense.cs" />
+    <Compile Include="BusinessObjects\IncomeByCustomer.cs" />
+    <Compile Include="BusinessObjects\IncomeStatementDetail.cs" />
+    <Compile Include="BusinessObjects\IncomeStatementHeader.cs" />
+    <Compile Include="BusinessObjects\InventoryActivityRegistry.cs" />
+    <Compile Include="BusinessObjects\InventoryAssembly.cs" />
+    <Compile Include="BusinessObjects\InventoryControlJournal.cs" />
+    <Compile Include="BusinessObjects\InventoryItem.cs" />
+    <Compile Include="BusinessObjects\InventoryReport.cs" />
+    <Compile Include="BusinessObjects\InventoryReportParam.cs" />
+    <Compile Include="BusinessObjects\Invoice.cs" />
+    <Compile Include="BusinessObjects\InvoiceDetail.cs" />
+    <Compile Include="BusinessObjects\InvoiceDetailReportParam.cs" />
+    <Compile Include="BusinessObjects\InvoiceDetailTrackingLine.cs" />
+    <Compile Include="BusinessObjects\InvoiceReconCharge.cs" />
+    <Compile Include="BusinessObjects\InvoiceReconciliation.cs" />
+    <Compile Include="BusinessObjects\InvoiceReconPayment.cs" />
+    <Compile Include="BusinessObjects\Item.cs" />
+    <Compile Include="BusinessObjects\ItemCategory.cs" />
+    <Compile Include="BusinessObjects\ItemTrackingEntry.cs" />
+    <Compile Include="BusinessObjects\ItemTrackingLine.cs" />
+    <Compile Include="BusinessObjects\ItemType.cs" />
+    <Compile Include="BusinessObjects\JobOrder.cs" />
+    <Compile Include="BusinessObjects\JobOrderDetail.cs" />
+    <Compile Include="BusinessObjects\JobsAPReportParam.cs" />
+    <Compile Include="BusinessObjects\JobsCurrentReportParam.cs" />
+    <Compile Include="BusinessObjects\JobsDetailedReportParam.cs" />
+    <Compile Include="BusinessObjects\JournalEntry.cs" />
+    <Compile Include="BusinessObjects\KDCharge.cs" />
+    <Compile Include="BusinessObjects\KDEntry.cs" />
+    <Compile Include="BusinessObjects\KDPayment.cs" />
+    <Compile Include="BusinessObjects\KDSalesRegistry.cs" />
+    <Compile Include="BusinessObjects\KDStatement.cs" />
+    <Compile Include="BusinessObjects\MCheckEffectiveDetails.cs" />
+    <Compile Include="BusinessObjects\MCheckPayeeDetail.cs" />
+    <Compile Include="BusinessObjects\MCheckVoucherDetail.cs" />
+    <Compile Include="BusinessObjects\MeterRegisterBase.cs" />
+    <Compile Include="BusinessObjects\MonthlyVATDeclaration.cs" />
+    <Compile Include="BusinessObjects\MonthlyWHTRemittance.cs" />
+    <Compile Include="BusinessObjects\MultiCheckVoucher.cs" />
+    <Compile Include="BusinessObjects\MultiCheckVouchPayDetail.cs" />
+    <Compile Include="BusinessObjects\NetBillingCompSetup.cs" />
+    <Compile Include="BusinessObjects\NetBillingSetupDetail.cs" />
+    <Compile Include="BusinessObjects\NetWorth.cs" />
+    <Compile Include="BusinessObjects\NewBatteryNo.cs" />
+    <Compile Include="BusinessObjects\NLSGenerationDetail.cs" />
+    <Compile Include="BusinessObjects\NonLocalSupplierReportGenerator.cs" />
+    <Compile Include="BusinessObjects\OdometerRegister.cs" />
+    <Compile Include="BusinessObjects\OfrsBuffer.cs" />
+    <Compile Include="BusinessObjects\OperationType.cs" />
+    <Compile Include="BusinessObjects\OtherDeduction.cs" />
+    <Compile Include="BusinessObjects\OtherTrip.cs" />
+    <Compile Include="BusinessObjects\OtherTripCharge.cs" />
+    <Compile Include="BusinessObjects\OtherTripPayment.cs" />
+    <Compile Include="BusinessObjects\OtherTripReportParam.cs" />
+    <Compile Include="BusinessObjects\OtherTripStatement.cs" />
+    <Compile Include="BusinessObjects\OvertimeAndLeave.cs" />
+    <Compile Include="BusinessObjects\PartMake.cs" />
+    <Compile Include="BusinessObjects\PartSize.cs" />
+    <Compile Include="BusinessObjects\PartsOrigin.cs" />
+    <Compile Include="BusinessObjects\PartType.cs" />
+    <Compile Include="BusinessObjects\PayablesReport.cs" />
+    <Compile Include="BusinessObjects\PayAdjustmentType.cs" />
+    <Compile Include="BusinessObjects\PayBill.cs" />
+    <Compile Include="BusinessObjects\PayBillExistingCharge.cs" />
+    <Compile Include="BusinessObjects\PayBillExistingCredit.cs" />
+    <Compile Include="BusinessObjects\Payee.cs" />
+    <Compile Include="BusinessObjects\PaymentsApplied.cs" />
+    <Compile Include="BusinessObjects\PayrollAdjustment.cs" />
+    <Compile Include="BusinessObjects\PayrollBatchType.cs" />
+    <Compile Include="BusinessObjects\PayrollDeduction.cs" />
+    <Compile Include="BusinessObjects\PayrollDeductionOther.cs" />
+    <Compile Include="BusinessObjects\PdReqReportItemSelection.cs" />
+    <Compile Include="BusinessObjects\PeriodicReportParam.cs" />
+    <Compile Include="BusinessObjects\PeriodicRequisitionReport.cs" />
+    <Compile Include="BusinessObjects\PhysicalAdjustment.cs" />
+    <Compile Include="BusinessObjects\PhysicalAdjustmentDetail.cs" />
+    <Compile Include="BusinessObjects\PhysicalAdjustmentDetailTrackingLine.cs" />
+    <Compile Include="BusinessObjects\POrderFuelDetail.cs" />
+    <Compile Include="BusinessObjects\Positions.cs" />
+    <Compile Include="BusinessObjects\Premium.cs" />
+    <Compile Include="BusinessObjects\PreventiveMaintenance.cs" />
+    <Compile Include="BusinessObjects\ProductGroup.cs" />
+    <Compile Include="BusinessObjects\PurchaseOrder.cs" />
+    <Compile Include="BusinessObjects\PurchaseOrderDetail.cs" />
+    <Compile Include="BusinessObjects\PurchaseOrderFuel.cs" />
+    <Compile Include="BusinessObjects\QuarterlyVATReturn.cs" />
+    <Compile Include="BusinessObjects\Receipt.cs" />
+    <Compile Include="BusinessObjects\ReceiptDetail.cs" />
+    <Compile Include="BusinessObjects\ReceiptDetailParam.cs" />
+    <Compile Include="BusinessObjects\ReceiptDetailReportParam.cs" />
+    <Compile Include="BusinessObjects\ReceiptDetailTrackingLine.cs" />
+    <Compile Include="BusinessObjects\ReceiptFuel.cs" />
+    <Compile Include="BusinessObjects\ReceiptFuelDetail.cs" />
+    <Compile Include="BusinessObjects\ReceiptReference.cs" />
+    <Compile Include="BusinessObjects\ReceivablesReport.cs" />
+    <Compile Include="BusinessObjects\ReceivePayment.cs" />
+    <Compile Include="BusinessObjects\Region.cs" />
+    <Compile Include="BusinessObjects\RepairItem.cs" />
+    <Compile Include="BusinessObjects\ReportGenerate.cs" />
+    <Compile Include="BusinessObjects\ReqCarryoutTransaction.cs" />
+    <Compile Include="BusinessObjects\Requisition.cs" />
+    <Compile Include="BusinessObjects\RequisitionWorksheet.cs" />
+    <Compile Include="BusinessObjects\ResetVerificationDetail.cs" />
+    <Compile Include="BusinessObjects\RevolvingPart.cs" />
+    <Compile Include="BusinessObjects\RevolvingPartDetail.cs" />
+    <Compile Include="BusinessObjects\RevolvingPartReport.cs" />
+    <Compile Include="BusinessObjects\RevolvingPartsActivityReason.cs" />
+    <Compile Include="BusinessObjects\RevolvingPartsCategory.cs" />
+    <Compile Include="BusinessObjects\RevolvingPartsCondition.cs" />
+    <Compile Include="BusinessObjects\RevolvingPartSell.cs" />
+    <Compile Include="BusinessObjects\RwsTireDetail.cs" />
+    <Compile Include="BusinessObjects\SalesHistoryParam.cs" />
+    <Compile Include="BusinessObjects\SalesOrder.cs" />
+    <Compile Include="BusinessObjects\SalesOrderDetail.cs" />
+    <Compile Include="BusinessObjects\SalesTaxCode.cs" />
+    <Compile Include="BusinessObjects\SelectFromPMSchedule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\SelectFromPMSchedule.Designer.cs">
+      <DependentUpon>SelectFromPMSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessObjects\SelectRecurringWO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\SelectRecurringWO.Designer.cs">
+      <DependentUpon>SelectRecurringWO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessObjects\ServiceItem.cs" />
+    <Compile Include="BusinessObjects\ServiceOdoRegistry.cs" />
+    <Compile Include="BusinessObjects\ShiftEmployee.cs" />
+    <Compile Include="BusinessObjects\ShiftTimeTable.cs" />
+    <Compile Include="BusinessObjects\ShipVia.cs" />
+    <Compile Include="BusinessObjects\ShuntingCharge.cs" />
+    <Compile Include="BusinessObjects\ShuntingEntry.cs" />
+    <Compile Include="BusinessObjects\ShuntingEntryDetail.cs" />
+    <Compile Include="BusinessObjects\ShuntingPayment.cs" />
+    <Compile Include="BusinessObjects\ShuntingSalesRegistry.cs" />
+    <Compile Include="BusinessObjects\ShuntingStatement.cs" />
+    <Compile Include="BusinessObjects\ShuntingStatementReportParam.cs" />
+    <Compile Include="BusinessObjects\SmallToolsAndEquipment.cs" />
+    <Compile Include="BusinessObjects\SmallToolsAndEquipmentCategory.cs" />
+    <Compile Include="BusinessObjects\SmallToolsAndEquipmentCondition.cs" />
+    <Compile Include="BusinessObjects\SmallToolsAndEquipmentDetail.cs" />
+    <Compile Include="BusinessObjects\SourceType.cs" />
+    <Compile Include="BusinessObjects\StaffPayroll.cs" />
+    <Compile Include="BusinessObjects\StaffPayrollAdjustment.cs" />
+    <Compile Include="BusinessObjects\StaffPayrollBatch.cs" />
+    <Compile Include="BusinessObjects\StaffPayrollDeduction.cs" />
+    <Compile Include="BusinessObjects\StanfilcoTrip.cs" />
+    <Compile Include="BusinessObjects\StanfilcoTripCharge.cs" />
+    <Compile Include="BusinessObjects\StanfilcoTripPayment.cs" />
+    <Compile Include="BusinessObjects\StanfilcoTripStatement.cs" />
+    <Compile Include="BusinessObjects\StanfilcoTripStatementAdjustment.cs" />
+    <Compile Include="BusinessObjects\StatementOfCashFlow.cs" />
+    <Compile Include="BusinessObjects\SubExpenseType.cs" />
+    <Compile Include="BusinessObjects\Tariff.cs" />
+    <Compile Include="BusinessObjects\TariffDriversClassifier.cs" />
+    <Compile Include="BusinessObjects\TariffFuelAllocation.cs" />
+    <Compile Include="BusinessObjects\Terms.cs" />
+    <Compile Include="BusinessObjects\TimeAddFunction.cs" />
+    <Compile Include="BusinessObjects\TimeTable.cs" />
+    <Compile Include="BusinessObjects\TimeTable2.cs" />
+    <Compile Include="BusinessObjects\Tire.cs" />
+    <Compile Include="BusinessObjects\TireDettachReason.cs" />
+    <Compile Include="BusinessObjects\TireForSale.cs" />
+    <Compile Include="BusinessObjects\TireForSaleDet.cs" />
+    <Compile Include="BusinessObjects\TireInsCondDetail.cs" />
+    <Compile Include="BusinessObjects\TireInspectionCondition.cs" />
+    <Compile Include="BusinessObjects\TireItem.cs" />
+    <Compile Include="BusinessObjects\TireItemsAccomCostDetail.cs" />
+    <Compile Include="BusinessObjects\TireItemsAccomulatedCost.cs" />
+    <Compile Include="BusinessObjects\TireMaintenanceProgramSetup.cs" />
+    <Compile Include="BusinessObjects\TireMake.cs" />
+    <Compile Include="BusinessObjects\TiremanActivity.cs" />
+    <Compile Include="BusinessObjects\TiremanDaily.cs" />
+    <Compile Include="BusinessObjects\TiremanDailyActivity.cs" />
+    <Compile Include="BusinessObjects\TireReport.cs" />
+    <Compile Include="BusinessObjects\TireServiceDetail.cs" />
+    <Compile Include="BusinessObjects\TireServiceDetail2.cs" />
+    <Compile Include="BusinessObjects\TireServiceInsConDetail.cs" />
+    <Compile Include="BusinessObjects\TireSize.cs" />
+    <Compile Include="BusinessObjects\TireToRetDetail.cs" />
+    <Compile Include="BusinessObjects\TireToRetreader.cs" />
+    <Compile Include="BusinessObjects\TireType.cs" />
+    <Compile Include="BusinessObjects\TOBattery.cs" />
+    <Compile Include="BusinessObjects\TOFuel.cs" />
+    <Compile Include="BusinessObjects\TOGenset.cs" />
+    <Compile Include="BusinessObjects\TOJobOrder.cs" />
+    <Compile Include="BusinessObjects\TOKnockDown.cs" />
+    <Compile Include="BusinessObjects\TOShunting.cs" />
+    <Compile Include="BusinessObjects\TOSparePart.cs" />
+    <Compile Include="BusinessObjects\TotalDailyPurchasesParam.cs" />
+    <Compile Include="BusinessObjects\TOTire.cs" />
+    <Compile Include="BusinessObjects\TOTrailer.cs" />
+    <Compile Include="BusinessObjects\TOTrip.cs" />
+    <Compile Include="BusinessObjects\TransactionDependency.cs" />
+    <Compile Include="BusinessObjects\TransferOrder.cs" />
+    <Compile Include="BusinessObjects\TransferOrderDetail.cs" />
+    <Compile Include="BusinessObjects\TransferOrderDetailTrackingLine.cs" />
+    <Compile Include="BusinessObjects\TreadStatus.cs" />
+    <Compile Include="BusinessObjects\TripCalculationDetail.cs" />
+    <Compile Include="BusinessObjects\TripLocation.cs" />
+    <Compile Include="BusinessObjects\TripOdoRegistry.cs" />
+    <Compile Include="BusinessObjects\TripZone.cs" />
+    <Compile Include="BusinessObjects\TruckIncomeExpense.cs" />
+    <Compile Include="BusinessObjects\TruckIncomeExpenseDetail.cs" />
+    <Compile Include="BusinessObjects\TruckIncomeExpenseTruck.cs" />
+    <Compile Include="BusinessObjects\TruckingOperation.cs" />
+    <Compile Include="BusinessObjects\TruckingOperation2.cs" />
+    <Compile Include="BusinessObjects\TruckingOperation2Detail.cs" />
+    <Compile Include="BusinessObjects\TruckingOperationDetail.cs" />
+    <Compile Include="BusinessObjects\TruckingSalesRegistry.cs" />
+    <Compile Include="BusinessObjects\TruckRegistry.cs" />
+    <Compile Include="BusinessObjects\TruckUnitType.cs" />
+    <Compile Include="BusinessObjects\TurnaroundTravelTimeReportParam.cs" />
+    <Compile Include="BusinessObjects\UnitOfMeasure.cs" />
+    <Compile Include="BusinessObjects\UnitTypeFleet.cs" />
+    <Compile Include="BusinessObjects\UnitTypeFuelAllocation.cs" />
+    <Compile Include="BusinessObjects\UOMRelation.cs" />
+    <Compile Include="BusinessObjects\VATEntries.cs" />
+    <Compile Include="BusinessObjects\Vendor.cs" />
+    <Compile Include="BusinessObjects\VendorBalanceToDate.cs" />
+    <Compile Include="BusinessObjects\Warehouse.cs" />
+    <Compile Include="BusinessObjects\WheelPosition.cs" />
+    <Compile Include="BusinessObjects\WHTAtSource.cs" />
+    <Compile Include="BusinessObjects\WHTEntries.cs" />
+    <Compile Include="BusinessObjects\WHTGroupCode.cs" />
+    <Compile Include="BusinessObjects\WorkOrder.cs" />
+    <Compile Include="BusinessObjects\WorkOrderDetailParam.cs" />
+    <Compile Include="BusinessObjects\WorkOrderItemDetail.cs" />
+    <Compile Include="BusinessObjects\WorkOrderItemDetailParam.cs" />
+    <Compile Include="BusinessObjects\WorkOrderJobsDetail.cs" />
+    <Compile Include="BusinessObjects\WorkOrderMechanic.cs" />
+    <Compile Include="BusinessObjects\ZeroOutRequest.cs" />
+    <Compile Include="Controllers\ShowCustomFormWindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CreatePOFromOFRSBuffer.cs" />
+    <Compile Include="DateTimeUtils.cs" />
+    <Compile Include="Editors\CustomUserControlViewItem.cs" />
+    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="ModelExtender.cs" />
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.Designer.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NumToWord.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DatabaseUpdate\Updater.cs" />
+    <Compile Include="ShowDetailViewFromListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TransferIndicator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Module.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DatabaseUpdate\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BusinessObjects\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controllers\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FunctionalTests\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FunctionalTests\WinSample.ets" />
+    <None Include="Images\ReadMe.txt" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FunctionalTests\Config.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

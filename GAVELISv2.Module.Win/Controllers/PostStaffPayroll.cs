@@ -1,0 +1,448 @@
+using System;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using DevExpress.Xpo;
+using DevExpress.XtraEditors;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Actions;
+using DevExpress.Persistent.Base;
+using DevExpress.ExpressApp.SystemModule;
+using GAVELISv2.Module.BusinessObjects;
+
+namespace GAVELISv2.Module.Win.Controllers
+{
+    public partial class PostStaffPayroll : ViewController
+    {
+        private SimpleAction postStaffPayroll;
+        private StaffPayrollBatch _StaffPayrollBatch;
+        private System.ComponentModel.BackgroundWorker _BgWorker;
+        private ProgressForm _FrmProgress;
+
+        public PostStaffPayroll()
+        {
+            this.TargetObjectType = typeof(StaffPayrollBatch);
+            this.TargetViewType = ViewType.DetailView;
+            string actionID = "StaffPayrollBatch.PostStaffPayroll";
+            this.postStaffPayroll = new SimpleAction(this,
+            actionID, PredefinedCategory.RecordEdit);
+            this.postStaffPayroll.TargetObjectsCriteria = "[Status] = 'Released'";
+            this.postStaffPayroll.Caption="Post Payroll";
+            this.postStaffPayroll.Execute += new
+            SimpleActionExecuteEventHandler(
+            PostStaffPayroll_Execute);
+        }
+        private void PostStaffPayroll_Execute(object sender,
+        SimpleActionExecuteEventArgs e)
+        {
+            _StaffPayrollBatch = ((DevExpress.ExpressApp.DetailView)this.View).
+    CurrentObject as StaffPayrollBatch;
+            // _StaffPayrollBatch.Status = PayrollBatchStatusEnum.Released
+            if (_StaffPayrollBatch.BatchType.SalariesAndWagesAccount == null)
+            {
+                throw new UserFriendlyException("Must provide Salaries and Wages Account in Batch Type.");
+            }
+            if (_StaffPayrollBatch.BatchType.CashInBankAccount == null)
+            {
+                throw new UserFriendlyException("Must provide Net Payroll Payable Account in Batch Type.");
+            }
+            ObjectSpace.CommitChanges();
+            if (_StaffPayrollBatch.StaffPayrolls.Count == 0)
+            {
+                throw new UserFriendlyException("There are no Staff Payroll data to post");
+            }
+
+            _FrmProgress = new ProgressForm("Posting data...", _StaffPayrollBatch.StaffPayrolls.Count,
+"Data processed {0} of {1} ");
+            _FrmProgress.CancelClick += FrmProgressCancelClick;
+            _BgWorker = new System.ComponentModel.BackgroundWorker
+            {
+                WorkerSupportsCancellation = true,
+                WorkerReportsProgress = true
+            };
+            _BgWorker.RunWorkerCompleted += BgWorkerRunWorkerCompleted;
+            _BgWorker.ProgressChanged += BgWorkerProgressChanged;
+            _BgWorker.DoWork += BgWorkerDoWork;
+            _BgWorker.RunWorkerAsync(_StaffPayrollBatch.StaffPayrolls);
+            _FrmProgress.ShowDialog();
+        }
+        private string _message;
+        private void BgWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            int index = 0;
+            decimal creditAmount = 0;
+            decimal debitAmount = 0;
+            UnitOfWork session = CreateUpdatingSession();
+            XPCollection<StaffPayroll> args = (XPCollection<StaffPayroll>)e.Argument;
+            StaffPayrollBatch batch = session.GetObjectByKey<StaffPayrollBatch>(_StaffPayrollBatch.Oid);
+            TempAccountCollection accounts = new TempAccountCollection();
+            TempAccount tmpAccount;
+            decimal netpay = 0m;
+            try
+            {
+                foreach (var item in args)
+                {
+                    index++;
+                    //Employee emp = session.GetObjectByKey<Employee>(item.Oid);
+                    _message = string.Format("Posting {0} successful.",
+                    item.Oid);
+                    _BgWorker.ReportProgress(1, _message);
+
+                    #region Algorithms here...
+
+                    StaffPayroll pr = session.GetObjectByKey<StaffPayroll>(item.Oid);
+                    netpay += pr.NetPay;
+                    if (pr.GrossPay > 0m)
+                    {
+                        int[] inds = null;
+                        inds = accounts.Find2("Account", batch.BatchType.SalariesAndWagesAccount);
+                        if (inds != null && inds.Length > 0)
+                        {
+                            tmpAccount = accounts[inds[0]];
+                            tmpAccount.DebitAmount += pr.GrossPay - pr.AdjustmentsAmt.Value;
+                        }
+                        else
+                        {
+                            tmpAccount = new TempAccount();
+                            tmpAccount.Account = batch.BatchType.SalariesAndWagesAccount;
+                            tmpAccount.DebitAmount += pr.GrossPay - pr.AdjustmentsAmt.Value;
+                            accounts.Add(tmpAccount);
+                        }
+
+                        #region Adjustments
+                        if (pr.StaffPayrollAdjustments.Count > 0)
+                        {
+                            foreach (var adj in pr.StaffPayrollAdjustments)
+                            {
+                                int[] inds1 = null;
+                                Account acc1 = null;
+                                if (adj.AdjustmentType !=null && adj.AdjustmentType.PayAdjustmentAccount != null)
+                                {
+                                    inds1 = accounts.Find2("Account", adj.AdjustmentType.PayAdjustmentAccount);
+                                    acc1 = adj.AdjustmentType.PayAdjustmentAccount;
+                                }
+                                else
+                                {
+                                    inds1 = accounts.Find2("Account", batch.BatchType.SalariesAndWagesAccount);
+                                    acc1 = batch.BatchType.SalariesAndWagesAccount;
+                                }
+                                
+                                if (inds1 != null && inds1.Length > 0)
+                                {
+                                    tmpAccount = accounts[inds1[0]];
+                                    tmpAccount.DebitAmount += adj.Amount;
+                                    //tmpAccount.CreditAmount += adj.Amount < 0 ? Math.Abs(adj.Amount) : 0;
+                                }
+                                else
+                                {
+                                    tmpAccount = new TempAccount();
+                                    tmpAccount.Account = acc1;
+                                    tmpAccount.DebitAmount += adj.Amount;
+                                    //tmpAccount.CreditAmount += adj.Amount < 0 ? Math.Abs(adj.Amount) : 0;
+                                    accounts.Add(tmpAccount);
+                                }
+                            }
+                        }
+                        #endregion
+                        
+                        #region Deductions
+                        if (pr.StaffPayrollDeductions.Count > 0)
+                        {
+                            foreach (var ded in pr.StaffPayrollDeductions)
+                            {
+                                int[] inds1 = null;
+                                Account acc1 = null;
+                                switch (ded.DeductionType)
+                                {
+                                    case DeductionType.Premium:
+                                        // PremiumCode
+                                        EmployeePremium ep = session.FindObject<EmployeePremium>(CriteriaOperator.Parse("[Oid]=?", ded.DedId));
+                                        if (ep == null)
+                                        {
+                                            throw new UserFriendlyException(string.Format("Premium deduction #{0} of {1} not found or deleted.", ded.DedId, ded.Employee.Name));
+                                        }
+                                        acc1 = ep.PremiumCode.PremiumAccount;
+                                        break;
+                                    case DeductionType.Loan:
+                                        // LoanCode
+                                        EmpLoan el = session.FindObject<EmpLoan>(CriteriaOperator.Parse("[Oid]=?", ded.DedId));
+                                        if (el == null)
+                                        {
+                                            throw new UserFriendlyException(string.Format("Loan deduction #{0} of {1} not found or deleted.", ded.DedId, ded.Employee.Name));
+                                        }
+                                        acc1 = el.LoanCode.EmployeeLoanAccount;
+                                        if (el.PayBegin == DateTime.MinValue)
+                                        {
+                                            el.PayBegin = batch.PayrollDate;
+                                            decimal currLoanBal = el.LoanBalance;
+                                            decimal tmpBalance = currLoanBal - ded.Amount;
+                                            if (tmpBalance < 0)
+                                            {
+                                                throw new UserFriendlyException(string.Format("Over deduction on Line ID: {0} - {1}", ded.LineID, ded.Employee.No));
+                                            }
+                                            else if (tmpBalance == 0)
+                                            {
+                                                el.PayEnd = batch.PayrollDate;
+                                                el.Paid = true;
+                                            }
+                                            el.LoanBalance = tmpBalance;
+                                            el.Save();
+                                        }
+                                        else
+                                        {
+                                            decimal currLoanBal = el.LoanBalance;
+                                            decimal tmpBalance = currLoanBal - ded.Amount;
+                                            if (tmpBalance < 0)
+                                            {
+                                                throw new UserFriendlyException(string.Format("Over deduction on Line ID: {0} - {1}", ded.LineID, ded.Employee.No));
+                                            }
+                                            else if (tmpBalance == 0)
+                                            {
+                                                el.PayEnd = batch.PayrollDate;
+                                                el.Paid = true;
+                                            }
+                                            el.LoanBalance = tmpBalance;
+                                            el.Save();
+                                        }
+                                        break;
+                                    case DeductionType.Tax:
+                                        // TaxCode
+                                        EmpTax et = session.FindObject<EmpTax>(CriteriaOperator.Parse("[Oid]=?", ded.DedId));
+                                        if (et == null)
+                                        {
+                                            throw new UserFriendlyException(string.Format("Tax deduction #{0} of {1} not found or deleted.", ded.DedId, ded.Employee.Name));
+                                        }
+                                        acc1 = et.TaxCode.EmployeeTaxCodeAccount;
+                                        if (et.PayBegin == DateTime.MinValue)
+                                        {
+                                            et.PayBegin = batch.PayrollDate;
+                                            decimal currTaxBal = et.TaxBalance;
+                                            decimal tmpBalance = currTaxBal - ded.Amount;
+                                            if (tmpBalance < 0)
+                                            {
+                                                throw new UserFriendlyException(string.Format("Over deduction on Line ID: {0} - {1}", ded.LineID, ded.Employee.No));
+                                            }
+                                            else if (tmpBalance == 0)
+                                            {
+                                                et.PayEnd = batch.PayrollDate;
+                                                et.Paid = true;
+                                            }
+                                            et.TaxBalance = tmpBalance;
+                                            et.Save();
+                                        }
+                                        else
+                                        {
+                                            decimal currTaxBal = et.TaxBalance;
+                                            decimal tmpBalance = currTaxBal - ded.Amount;
+                                            if (tmpBalance < 0)
+                                            {
+                                                throw new UserFriendlyException(string.Format("Over deduction on Line ID: {0} - {1}", ded.LineID, ded.Employee.No));
+                                            }
+                                            else if (tmpBalance == 0)
+                                            {
+                                                et.PayEnd = batch.PayrollDate;
+                                                et.Paid = true;
+                                            }
+                                            et.TaxBalance = tmpBalance;
+                                            et.Save();
+                                        }
+                                        break;
+                                    case DeductionType.Other:
+                                        // DedCode
+                                        EmpOtherDed eo = session.FindObject<EmpOtherDed>(CriteriaOperator.Parse("[Oid]=?", ded.DedId));
+                                        if (eo == null)
+                                        {
+                                            throw new UserFriendlyException(string.Format("Other deduction #{0} of {1} not found or deleted.", ded.DedId, ded.Employee.Name));
+                                        }
+                                        acc1 = eo.DedCode.OtherDeductionAccount;
+                                        if (eo.PayBegin == DateTime.MinValue)
+                                        {
+                                            eo.PayBegin = batch.PayrollDate;
+                                            decimal pdamnt = eo.PaidAmount + ded.Amount;
+                                            if (pdamnt > eo.Amount)
+                                            {
+                                                throw new UserFriendlyException(string.Format("Over deduction on Line ID: {0} - {1}", ded.LineID, ded.Employee.No));
+                                            }
+                                            else if (pdamnt == eo.Amount)
+                                            {
+                                                eo.PayEnd = batch.PayrollDate;
+                                                eo.Paid = true;
+                                            }
+                                            eo.PaidAmount = pdamnt;
+                                            eo.Save();
+                                        }
+                                        else
+                                        {
+                                            decimal pdamnt = eo.PaidAmount + ded.Amount;
+                                            if (pdamnt > eo.Amount)
+                                            {
+                                                throw new UserFriendlyException(string.Format("Over deduction on Line ID: {0} - {1}", ded.LineID, ded.Employee.No));
+                                            }
+                                            else if (pdamnt == eo.Amount)
+                                            {
+                                                eo.PayEnd = batch.PayrollDate;
+                                                eo.Paid = true;
+                                            }
+                                            eo.PaidAmount = pdamnt;
+                                            eo.Save();
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                inds1 = accounts.Find2("Account", acc1);
+                                if (inds1 != null && inds1.Length > 0)
+                                {
+                                    tmpAccount = accounts[inds1[0]];
+                                    //tmpAccount.DebitAmount += ded.Amount > 0 ? Math.Abs(ded.Amount) : 0;
+                                    tmpAccount.CreditAmount += ded.Amount;
+                                }
+                                else
+                                {
+                                    tmpAccount = new TempAccount();
+                                    tmpAccount.Account = acc1;
+                                    //tmpAccount.DebitAmount += ded.Amount > 0 ? Math.Abs(ded.Amount) : 0;
+                                    tmpAccount.CreditAmount += ded.Amount;
+                                    accounts.Add(tmpAccount);
+                                }
+                            }
+                        }
+                        #endregion                       
+                    }
+                    pr.AttRecId.Posted = true;
+                    pr.Posted = true;
+                    pr.Save();
+
+                    #endregion
+
+                    if (_BgWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        session.Dispose();
+                        break;
+                    }
+                }
+            }
+            finally
+            {
+                if (index == args.Count)
+                {
+                    foreach (TempAccount acc in accounts)
+                    {
+                        GenJournalDetail _gjd = ReflectionHelper.CreateObject<
+                        GenJournalDetail>(session);
+                        _gjd.GenJournalID = batch;
+                        _gjd.Account = acc.Account;
+                        _gjd.DebitAmount = acc.DebitAmount;
+                        _gjd.CreditAmount = acc.CreditAmount;
+                        _gjd.Description = "Staff Payroll " + string.Format("{0}-{1} '{2}", batch.PeriodStart.ToString("MM/dd"), batch.PeriodEnd.ToString("MM/dd"), batch.PeriodEnd.Year);
+                        //_gjd.SubAccountNo = thisReceipt.Vendor;
+                        //_gjd.SubAccountType = thisReceipt.Vendor.ContactType;
+                        _gjd.Approved = true;
+                        debitAmount = debitAmount + _gjd.DebitAmount;
+                        creditAmount = creditAmount + _gjd.CreditAmount;
+                        _gjd.Save();
+                    }
+                    // Net Payroll Payable
+                    GenJournalDetail _gjd2 = ReflectionHelper.CreateObject<
+                        GenJournalDetail>(session);
+                    _gjd2.GenJournalID = batch;
+                    _gjd2.Account = batch.BatchType.CashInBankAccount;
+                    _gjd2.CreditAmount = netpay;
+                    _gjd2.Description = "Staff Payroll " + string.Format("{0}-{1} '{2}", batch.PeriodStart.ToString("MM/dd"), batch.PeriodEnd.ToString("MM/dd"), batch.PeriodEnd.Year);
+                    //_gjd.SubAccountNo = thisReceipt.Vendor;
+                    //_gjd.SubAccountType = thisReceipt.Vendor.ContactType;
+                    _gjd2.Approved = true;
+                    creditAmount = creditAmount + _gjd2.CreditAmount;
+                    _gjd2.Save();
+                    batch.Status = PayrollBatchStatusEnum.Posted;
+                    batch.Save();
+                    if (Math.Round(creditAmount, 2) != Math.Round(debitAmount, 2))
+                    {
+                        throw new
+                            ApplicationException("Accounting entries not balance");
+                    }
+                    CommitUpdatingSession(session);
+                }
+                session.Dispose();
+            }
+        }
+        private UnitOfWork CreateUpdatingSession()
+        {
+            UnitOfWork session = new UnitOfWork(((ObjectSpace)ObjectSpace).
+            Session.ObjectLayer);
+            OnUpdatingSessionCreated(session);
+            return session;
+        }
+        private void CommitUpdatingSession(UnitOfWork session)
+        {
+            session.CommitChanges();
+            OnUpdatingSessionCommitted(session);
+        }
+        protected virtual void OnUpdatingSessionCommitted(UnitOfWork session)
+        {
+            if (UpdatingSessionCommitted != null)
+            {
+                UpdatingSessionCommitted(this
+                    , new SessionEventArgs(session));
+            }
+        }
+        protected virtual void OnUpdatingSessionCreated(UnitOfWork session)
+        {
+            if
+                (UpdatingSessionCreated != null)
+            {
+                UpdatingSessionCreated(this, new
+                    SessionEventArgs(session));
+            }
+        }
+
+        private void BgWorkerProgressChanged(object sender,
+        ProgressChangedEventArgs e)
+        {
+            if (_FrmProgress != null)
+            {
+                _FrmProgress.
+                    DoProgress(e.ProgressPercentage);
+            }
+        }
+        private void BgWorkerRunWorkerCompleted(object sender,
+        RunWorkerCompletedEventArgs e)
+        {
+            _FrmProgress.Close();
+            if (e.Cancelled)
+            {
+                XtraMessageBox.Show(
+                    "Posting of payroll batch data is cancelled.", "Cancelled",
+                    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                if (e.Error != null)
+                {
+                    XtraMessageBox.Show(e.Error.Message,
+                        "Error", System.Windows.Forms.MessageBoxButtons.OK, System.
+                        Windows.Forms.MessageBoxIcon.Error);
+                }
+                else
+                {
+                    XtraMessageBox.Show(
+                    "Payroll batch data has been successfully posted.");
+                    //ObjectSpace.ReloadObject(_IncomeStatement);
+                    ObjectSpace.Refresh();
+                }
+            }
+        }
+        private void FrmProgressCancelClick(object sender, EventArgs e)
+        {
+            _BgWorker.CancelAsync();
+        }
+        public event EventHandler<SessionEventArgs> UpdatingSessionCreated;
+        public event EventHandler<SessionEventArgs> UpdatingSessionCommitted;
+    }
+}

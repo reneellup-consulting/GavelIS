@@ -1,0 +1,2631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CCFFDDAC-D311-4256-867E-055F2AA83A0D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GAVELISv2.Module.Win</RootNamespace>
+    <AssemblyName>GAVELISv2.Module.Win</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\GAVELISv2.Module.Win.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\GAVELISv2.Module.Win.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EasyTest|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\EasyTest\GAVELISv2.Module.Win.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Chart.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Chart.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.PivotChart.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.PivotChart.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.PivotGrid.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Reports.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.Reports.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Scheduler.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.Scheduler.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Workflow.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Workflow.Win.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v11.2.Core, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Reports.v11.2.Designer, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v11.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Objects.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.Win.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Win.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v11.2.UI, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v11.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v11.2.Extensions, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v11.2.Core, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v11.2, Version=11.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Xpand.ExpressApp.ImportWizard">
+      <HintPath>..\..\..\..\RLLLUP Consulting\GAVEL\Source\MyXPand\Xpand.ExpressApp.ImportWizard.dll</HintPath>
+    </Reference>
+    <Reference Include="Xpand.ExpressApp.ImportWizard.Win">
+      <HintPath>..\..\..\..\RLLLUP Consulting\GAVEL\Source\MyXPand\Xpand.ExpressApp.ImportWizard.Win.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddChargesFromPettyCashController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AddChargesFromPettyCashController.Designer.cs">
+      <DependentUpon>AddChargesFromPettyCashController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseBindingList.cs" />
+    <Compile Include="CloneHelper.cs" />
+    <Compile Include="Controllers\AddChangeDriver.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeDriver.Designer.cs">
+      <DependentUpon>AddChangeDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeDriverDole.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeDriverDole.Designer.cs">
+      <DependentUpon>AddChangeDriverDole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeDriverOther.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeDriverOther.Designer.cs">
+      <DependentUpon>AddChangeDriverOther.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeGenset.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeGenset.Designer.cs">
+      <DependentUpon>AddChangeGenset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeGensetDole.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeGensetDole.Designer.cs">
+      <DependentUpon>AddChangeGensetDole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeGensetOther.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeGensetOther.Designer.cs">
+      <DependentUpon>AddChangeGensetOther.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeTruck.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeTruck.Designer.cs">
+      <DependentUpon>AddChangeTruck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeTruckDole.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeTruckDole.Designer.cs">
+      <DependentUpon>AddChangeTruckDole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChangeTruckOther.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChangeTruckOther.Designer.cs">
+      <DependentUpon>AddChangeTruckOther.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChargesFromJobOrderController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChargesFromJobOrderController.Designer.cs">
+      <DependentUpon>AddChargesFromJobOrderController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddChargesFromWorkOrderController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddChargesFromWorkOrderController.Designer.cs">
+      <DependentUpon>AddChargesFromWorkOrderController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddContactNoteController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddContactNoteController.Designer.cs">
+      <DependentUpon>AddContactNoteController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddDetailsForReclassController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddDetailsForReclassController.Designer.cs">
+      <DependentUpon>AddDetailsForReclassController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddDoleTripsForReconciliation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddDoleTripsForReconciliation.Designer.cs">
+      <DependentUpon>AddDoleTripsForReconciliation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddKD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddKD.Designer.cs">
+      <DependentUpon>AddKD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddShunting.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddShunting.Designer.cs">
+      <DependentUpon>AddShunting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddShuntingController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddShuntingController.Designer.cs">
+      <DependentUpon>AddShuntingController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AddTripsToDriverPayroll2Controller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddTripsToDriverPayroll2Controller.Designer.cs">
+      <DependentUpon>AddTripsToDriverPayroll2Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AdjustItemPrices.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AdjustItemPrices.Designer.cs">
+      <DependentUpon>AdjustItemPrices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AdjustPrice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AdjustPrice.Designer.cs">
+      <DependentUpon>AdjustPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AppendClockInOutController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AppendClockInOutController.Designer.cs">
+      <DependentUpon>AppendClockInOutController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AppendClockLogController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AppendClockLogController.Designer.cs">
+      <DependentUpon>AppendClockLogController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ApproveBillAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ApproveBillAction.Designer.cs">
+      <DependentUpon>ApproveBillAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ApprovedOtController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ApprovedOtController.Designer.cs">
+      <DependentUpon>ApprovedOtController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ApproveSelectedVoucherController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ApproveSelectedVoucherController.Designer.cs">
+      <DependentUpon>ApproveSelectedVoucherController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AssignShiftToEmployeesController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AssignShiftToEmployeesController.Designer.cs">
+      <DependentUpon>AssignShiftToEmployeesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AssignTariffsToUnitTypeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AssignTariffsToUnitTypeController.Designer.cs">
+      <DependentUpon>AssignTariffsToUnitTypeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AttendanceRecordViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AttendanceRecordViewController.Designer.cs">
+      <DependentUpon>AttendanceRecordViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AutoCorrectOdoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\AutoCorrectOdoController.Designer.cs">
+      <DependentUpon>AutoCorrectOdoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BatteryAttachedToController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\BatteryAttachedToController.Designer.cs">
+      <DependentUpon>BatteryAttachedToController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BatteryDettachFromController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\BatteryDettachFromController.Designer.cs">
+      <DependentUpon>BatteryDettachFromController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BatteryRequestReplacementController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\BatteryRequestReplacementController.Designer.cs">
+      <DependentUpon>BatteryRequestReplacementController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BatteryToMaintenanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\BatteryToMaintenanceController.Designer.cs">
+      <DependentUpon>BatteryToMaintenanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BatteryToScrapController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\BatteryToScrapController.Designer.cs">
+      <DependentUpon>BatteryToScrapController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BatteryTransferToController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\BatteryTransferToController.Designer.cs">
+      <DependentUpon>BatteryTransferToController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalculateAttendance2Controller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CalculateAttendance2Controller.Designer.cs">
+      <DependentUpon>CalculateAttendance2Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalculateAttendanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CalculateAttendanceController.Designer.cs">
+      <DependentUpon>CalculateAttendanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CalculatePartialPayController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CalculatePartialPayController.Designer.cs">
+      <DependentUpon>CalculatePartialPayController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CargoHolcimDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CargoHolcimDrillDownController.Designer.cs">
+      <DependentUpon>CargoHolcimDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CarryOutEcsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CarryOutEcsController.Designer.cs">
+      <DependentUpon>CarryOutEcsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CarryOutFuelRequest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CarryOutFuelRequest.Designer.cs">
+      <DependentUpon>CarryOutFuelRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CarryOutRequest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CarryOutRequest.Designer.cs">
+      <DependentUpon>CarryOutRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CarryOutSO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CarryOutSO.Designer.cs">
+      <DependentUpon>CarryOutSO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CarryOutTO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CarryOutTO.Designer.cs">
+      <DependentUpon>CarryOutTO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CarryOutWO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CarryOutWO.Designer.cs">
+      <DependentUpon>CarryOutWO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CashflowListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CashflowListViewController.Designer.cs">
+      <DependentUpon>CashflowListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChangeCaptionControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChangeCaptionControllerBase.Designer.cs">
+      <DependentUpon>ChangeCaptionControllerBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChangeCompTemplateStanfilcoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChangeCompTemplateStanfilcoController.Designer.cs">
+      <DependentUpon>ChangeCompTemplateStanfilcoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChangeDateShiftController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChangeDateShiftController.Designer.cs">
+      <DependentUpon>ChangeDateShiftController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChangeFuelOdo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChangeFuelOdo.Designer.cs">
+      <DependentUpon>ChangeFuelOdo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChangeGridColumnCaptionControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChangeGridColumnCaptionControllerBase.Designer.cs">
+      <DependentUpon>ChangeGridColumnCaptionControllerBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChangeOdometer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChangeOdometer.Designer.cs">
+      <DependentUpon>ChangeOdometer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChangeOriginController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChangeOriginController.Designer.cs">
+      <DependentUpon>ChangeOriginController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ChartOfAccountController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ChartOfAccountController.Designer.cs">
+      <DependentUpon>ChartOfAccountController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearAllTransactions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearAllTransactions.Designer.cs">
+      <DependentUpon>ClearAllTransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearDolefilTripCharges.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearDolefilTripCharges.Designer.cs">
+      <DependentUpon>ClearDolefilTripCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearFuelStatementCharges.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearFuelStatementCharges.Designer.cs">
+      <DependentUpon>ClearFuelStatementCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearGensetCharges.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearGensetCharges.Designer.cs">
+      <DependentUpon>ClearGensetCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearKDCharges.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearKDCharges.Designer.cs">
+      <DependentUpon>ClearKDCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearOtherTripCharges.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearOtherTripCharges.Designer.cs">
+      <DependentUpon>ClearOtherTripCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearShuntingCharges.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearShuntingCharges.Designer.cs">
+      <DependentUpon>ClearShuntingCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearStanfilcoTripCharges.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearStanfilcoTripCharges.Designer.cs">
+      <DependentUpon>ClearStanfilcoTripCharges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ClearUndepositedList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ClearUndepositedList.Designer.cs">
+      <DependentUpon>ClearUndepositedList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CompleteIncExpenseReclassController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CompleteIncExpenseReclassController.Designer.cs">
+      <DependentUpon>CompleteIncExpenseReclassController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ConfirmFuelWithdrawalController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ConfirmFuelWithdrawalController.Designer.cs">
+      <DependentUpon>ConfirmFuelWithdrawalController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ConfirmJobOrderAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ConfirmJobOrderAction.Designer.cs">
+      <DependentUpon>ConfirmJobOrderAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ConvertTireNoFormatController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ConvertTireNoFormatController.Designer.cs">
+      <DependentUpon>ConvertTireNoFormatController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CorrectFacilityAndDepartmentController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CorrectFacilityAndDepartmentController.Designer.cs">
+      <DependentUpon>CorrectFacilityAndDepartmentController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CorrectFuelOdo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CorrectFuelOdo.Designer.cs">
+      <DependentUpon>CorrectFuelOdo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CorrectMeterLogsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CorrectMeterLogsController.Designer.cs">
+      <DependentUpon>CorrectMeterLogsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CorrectOdometer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CorrectOdometer.Designer.cs">
+      <DependentUpon>CorrectOdometer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateFuelRegFromPO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateFuelRegFromPO.Designer.cs">
+      <DependentUpon>CreateFuelRegFromPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateInvoiceFromSO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateInvoiceFromSO.Designer.cs">
+      <DependentUpon>CreateInvoiceFromSO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateJOfromPOController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateJOfromPOController.Designer.cs">
+      <DependentUpon>CreateJOfromPOController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateMemoFromInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateMemoFromInvoice.Designer.cs">
+      <DependentUpon>CreateMemoFromInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateMemoFromReceipt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateMemoFromReceipt.Designer.cs">
+      <DependentUpon>CreateMemoFromReceipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateReceiptFromFuelPO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateReceiptFromFuelPO.Designer.cs">
+      <DependentUpon>CreateReceiptFromFuelPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreateReceiptFromPO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreateReceiptFromPO.Designer.cs">
+      <DependentUpon>CreateReceiptFromPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CreditMemoDetailShowItemTracking.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CreditMemoDetailShowItemTracking.Designer.cs">
+      <DependentUpon>CreditMemoDetailShowItemTracking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DebitMemoDetailShowItemTracking.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DebitMemoDetailShowItemTracking.Designer.cs">
+      <DependentUpon>DebitMemoDetailShowItemTracking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DeleteItemsMovementDetController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeleteItemsMovementDetController.Designer.cs">
+      <DependentUpon>DeleteItemsMovementDetController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DeletePurchMovementDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeletePurchMovementDetailsController.Designer.cs">
+      <DependentUpon>DeletePurchMovementDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DeletePurchUsageDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeletePurchUsageDetailsController.Designer.cs">
+      <DependentUpon>DeletePurchUsageDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DeleteSelectedWOController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeleteSelectedWOController.Designer.cs">
+      <DependentUpon>DeleteSelectedWOController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DeleteTripsIncExpController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeleteTripsIncExpController.Designer.cs">
+      <DependentUpon>DeleteTripsIncExpController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DepositFunds.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DepositFunds.Designer.cs">
+      <DependentUpon>DepositFunds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DettachTireOpenController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DettachTireOpenController.Designer.cs">
+      <DependentUpon>DettachTireOpenController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DisappovedOtController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DisappovedOtController.Designer.cs">
+      <DependentUpon>DisappovedOtController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DriverBonusClearAllController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DriverBonusClearAllController.Designer.cs">
+      <DependentUpon>DriverBonusClearAllController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DriverPay3ListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DriverPay3ListViewController.Designer.cs">
+      <DependentUpon>DriverPay3ListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DriverPayListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DriverPayListViewController.Designer.cs">
+      <DependentUpon>DriverPayListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DriversBonusLoadDriversController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DriversBonusLoadDriversController.Designer.cs">
+      <DependentUpon>DriversBonusLoadDriversController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\EntryDateCorrectionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\EntryDateCorrectionController.Designer.cs">
+      <DependentUpon>EntryDateCorrectionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpandAllAccounts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpandAllAccounts.Designer.cs">
+      <DependentUpon>ExpandAllAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpandBSDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpandBSDetails.Designer.cs">
+      <DependentUpon>ExpandBSDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpandISDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpandISDetails.Designer.cs">
+      <DependentUpon>ExpandISDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpenseAnalyticDetailsDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpenseAnalyticDetailsDrillDownController.Designer.cs">
+      <DependentUpon>ExpenseAnalyticDetailsDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpenseAnalyticPivotBufferDrilldownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpenseAnalyticPivotBufferDrilldownController.Designer.cs">
+      <DependentUpon>ExpenseAnalyticPivotBufferDrilldownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpensePerFacilitityDetailDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpensePerFacilitityDetailDrillDownController.Designer.cs">
+      <DependentUpon>ExpensePerFacilitityDetailDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpensePerFacilityGridViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpensePerFacilityGridViewController.Designer.cs">
+      <DependentUpon>ExpensePerFacilityGridViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExpensesAnalyticsDetailsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExpensesAnalyticsDetailsViewController.Designer.cs">
+      <DependentUpon>ExpensesAnalyticsDetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExtractCarryoutTransactionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExtractCarryoutTransactionController.Designer.cs">
+      <DependentUpon>ExtractCarryoutTransactionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExtractDriverIncentivesController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExtractDriverIncentivesController.Designer.cs">
+      <DependentUpon>ExtractDriverIncentivesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExtractStaffDeductions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExtractStaffDeductions.Designer.cs">
+      <DependentUpon>ExtractStaffDeductions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExtractStaffIncentiveController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExtractStaffIncentiveController.Designer.cs">
+      <DependentUpon>ExtractStaffIncentiveController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ExtractStaffOtherDeductions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ExtractStaffOtherDeductions.Designer.cs">
+      <DependentUpon>ExtractStaffOtherDeductions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FillPersonResponsibleController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\FillPersonResponsibleController.Designer.cs">
+      <DependentUpon>FillPersonResponsibleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FillUpAttendanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\FillUpAttendanceController.Designer.cs">
+      <DependentUpon>FillUpAttendanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FleetTirePrintController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\FleetTirePrintController.Designer.cs">
+      <DependentUpon>FleetTirePrintController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FormatAttendanceCalculatorController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\FormatAttendanceCalculatorController.Designer.cs">
+      <DependentUpon>FormatAttendanceCalculatorController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ForwardEmployeesChargesToPayrollController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ForwardEmployeesChargesToPayrollController.Designer.cs">
+      <DependentUpon>ForwardEmployeesChargesToPayrollController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ForwardSelectedToPayrollController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ForwardSelectedToPayrollController.Designer.cs">
+      <DependentUpon>ForwardSelectedToPayrollController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ForwardToCurrentDolePayrollController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ForwardToCurrentDolePayrollController.Designer.cs">
+      <DependentUpon>ForwardToCurrentDolePayrollController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FuelRegisterViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\FuelRegisterViewController.Designer.cs">
+      <DependentUpon>FuelRegisterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateAdjustmentsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateAdjustmentsController.Designer.cs">
+      <DependentUpon>GenerateAdjustmentsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateBalanceSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateBalanceSheet.Designer.cs">
+      <DependentUpon>GenerateBalanceSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateCargoParticularsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateCargoParticularsController.Designer.cs">
+      <DependentUpon>GenerateCargoParticularsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateCargoParticularsUnitController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateCargoParticularsUnitController.Designer.cs">
+      <DependentUpon>GenerateCargoParticularsUnitController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateCorrectionWorksheetController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateCorrectionWorksheetController.Designer.cs">
+      <DependentUpon>GenerateCorrectionWorksheetController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateCostCentersFromEmployeeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateCostCentersFromEmployeeController.Designer.cs">
+      <DependentUpon>GenerateCostCentersFromEmployeeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateCountDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateCountDetailsController.Designer.cs">
+      <DependentUpon>GenerateCountDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateCountWorksheetController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateCountWorksheetController.Designer.cs">
+      <DependentUpon>GenerateCountWorksheetController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateDayToDayRequestController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateDayToDayRequestController.Designer.cs">
+      <DependentUpon>GenerateDayToDayRequestController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverDeductions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverDeductions.Designer.cs">
+      <DependentUpon>GenerateDriverDeductions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverEarningsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverEarningsController.Designer.cs">
+      <DependentUpon>GenerateDriverEarningsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverPayroll.Designer.cs">
+      <DependentUpon>GenerateDriverPayroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverPayrollTrips.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateDriverPayrollTrips.Designer.cs">
+      <DependentUpon>GenerateDriverPayrollTrips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateExpenseAnalyticDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateExpenseAnalyticDetailsController.Designer.cs">
+      <DependentUpon>GenerateExpenseAnalyticDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateGrossTaxablePurchController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateGrossTaxablePurchController.Designer.cs">
+      <DependentUpon>GenerateGrossTaxablePurchController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateIncomeStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateIncomeStatement.Designer.cs">
+      <DependentUpon>GenerateIncomeStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateInitialCashSalesController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateInitialCashSalesController.Designer.cs">
+      <DependentUpon>GenerateInitialCashSalesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateItemsMovementController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateItemsMovementController.Designer.cs">
+      <DependentUpon>GenerateItemsMovementController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateMultiCVPayDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateMultiCVPayDetailsController.Designer.cs">
+      <DependentUpon>GenerateMultiCVPayDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateNLSDetailController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateNLSDetailController.Designer.cs">
+      <DependentUpon>GenerateNLSDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateOtherDriverDeductions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateOtherDriverDeductions.Designer.cs">
+      <DependentUpon>GenerateOtherDriverDeductions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GeneratePartsPurchUsageController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GeneratePartsPurchUsageController.Designer.cs">
+      <DependentUpon>GeneratePartsPurchUsageController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GeneratePOFromBufferController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GeneratePOFromBufferController.Designer.cs">
+      <DependentUpon>GeneratePOFromBufferController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateReportBufferController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateReportBufferController.Designer.cs">
+      <DependentUpon>GenerateReportBufferController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateStaffPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateStaffPayroll.Designer.cs">
+      <DependentUpon>GenerateStaffPayroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateThirteenthDays.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateThirteenthDays.Designer.cs">
+      <DependentUpon>GenerateThirteenthDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateTimesheetController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateTimesheetController.Designer.cs">
+      <DependentUpon>GenerateTimesheetController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateTOperations2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateTOperations2.Designer.cs">
+      <DependentUpon>GenerateTOperations2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateTransferredStocksDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateTransferredStocksDetailsController.Designer.cs">
+      <DependentUpon>GenerateTransferredStocksDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateTripsIncomeExpenseController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateTripsIncomeExpenseController.Designer.cs">
+      <DependentUpon>GenerateTripsIncomeExpenseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateTruckIncomeExpenseController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateTruckIncomeExpenseController.Designer.cs">
+      <DependentUpon>GenerateTruckIncomeExpenseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateTruckingOperations.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateTruckingOperations.Designer.cs">
+      <DependentUpon>GenerateTruckingOperations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GensetMigrateToDollarController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GensetMigrateToDollarController.Designer.cs">
+      <DependentUpon>GensetMigrateToDollarController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GensetViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GensetViewController.Designer.cs">
+      <DependentUpon>GensetViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetAttendanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetAttendanceController.Designer.cs">
+      <DependentUpon>GetAttendanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetCalculatedItems.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetCalculatedItems.Designer.cs">
+      <DependentUpon>GetCalculatedItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetChargesAndCreditsAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetChargesAndCreditsAction.Designer.cs">
+      <DependentUpon>GetChargesAndCreditsAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetCustomerChargesAndCredits.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetCustomerChargesAndCredits.Designer.cs">
+      <DependentUpon>GetCustomerChargesAndCredits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetDoleTripCreditsAndPayments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetDoleTripCreditsAndPayments.Designer.cs">
+      <DependentUpon>GetDoleTripCreditsAndPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetDriverTripsToPay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetDriverTripsToPay.Designer.cs">
+      <DependentUpon>GetDriverTripsToPay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetGensetCreditsAndPayments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetGensetCreditsAndPayments.Designer.cs">
+      <DependentUpon>GetGensetCreditsAndPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetInAndOutLogs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetInAndOutLogs.Designer.cs">
+      <DependentUpon>GetInAndOutLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetItemsMovedCurrQtyPerWhseController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetItemsMovedCurrQtyPerWhseController.Designer.cs">
+      <DependentUpon>GetItemsMovedCurrQtyPerWhseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetKDCreditsAndPayments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetKDCreditsAndPayments.Designer.cs">
+      <DependentUpon>GetKDCreditsAndPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetNewBatteryNoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetNewBatteryNoController.Designer.cs">
+      <DependentUpon>GetNewBatteryNoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetNewRevolvingPartNoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetNewRevolvingPartNoController.Designer.cs">
+      <DependentUpon>GetNewRevolvingPartNoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetNewSmallToolNoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetNewSmallToolNoController.Designer.cs">
+      <DependentUpon>GetNewSmallToolNoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetOnlineRequestController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetOnlineRequestController.Designer.cs">
+      <DependentUpon>GetOnlineRequestController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetOnlineRequisitionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetOnlineRequisitionController.Designer.cs">
+      <DependentUpon>GetOnlineRequisitionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetOtherDriverDeduction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetOtherDriverDeduction.Designer.cs">
+      <DependentUpon>GetOtherDriverDeduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetOtherStaffDeductionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetOtherStaffDeductionController.Designer.cs">
+      <DependentUpon>GetOtherStaffDeductionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetOtherTripCreditsAndPayments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetOtherTripCreditsAndPayments.Designer.cs">
+      <DependentUpon>GetOtherTripCreditsAndPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetOvertimeAndLeaves.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetOvertimeAndLeaves.Designer.cs">
+      <DependentUpon>GetOvertimeAndLeaves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetPhysicalCountItems.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetPhysicalCountItems.Designer.cs">
+      <DependentUpon>GetPhysicalCountItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetPODetailsToJobOrderController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetPODetailsToJobOrderController.Designer.cs">
+      <DependentUpon>GetPODetailsToJobOrderController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetPODetailsToReceiptFuelController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetPODetailsToReceiptFuelController.Designer.cs">
+      <DependentUpon>GetPODetailsToReceiptFuelController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetPODetailsToReceiveController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetPODetailsToReceiveController.Designer.cs">
+      <DependentUpon>GetPODetailsToReceiveController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetReceiptFuelCreditsAndPayments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetReceiptFuelCreditsAndPayments.Designer.cs">
+      <DependentUpon>GetReceiptFuelCreditsAndPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetShuntingCreditsAndPayments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetShuntingCreditsAndPayments.Designer.cs">
+      <DependentUpon>GetShuntingCreditsAndPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetStanTripCreditsAndPayments.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetStanTripCreditsAndPayments.Designer.cs">
+      <DependentUpon>GetStanTripCreditsAndPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUndepositedFunds.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUndepositedFunds.Designer.cs">
+      <DependentUpon>GetUndepositedFunds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidDolefilTrips.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidDolefilTrips.Designer.cs">
+      <DependentUpon>GetUnpaidDolefilTrips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidFuelReceipts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidFuelReceipts.Designer.cs">
+      <DependentUpon>GetUnpaidFuelReceipts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidGenset.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidGenset.Designer.cs">
+      <DependentUpon>GetUnpaidGenset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidKDs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidKDs.Designer.cs">
+      <DependentUpon>GetUnpaidKDs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidOtherTrips.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidOtherTrips.Designer.cs">
+      <DependentUpon>GetUnpaidOtherTrips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidShunting.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidShunting.Designer.cs">
+      <DependentUpon>GetUnpaidShunting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidStanfilcoTrips.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetUnpaidStanfilcoTrips.Designer.cs">
+      <DependentUpon>GetUnpaidStanfilcoTrips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\HideDeleteOnTransactionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\HideDeleteOnTransactionController.Designer.cs">
+      <DependentUpon>HideDeleteOnTransactionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\HideItemWindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\HideItemWindowController.Designer.cs">
+      <DependentUpon>HideItemWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\IcjToExcelController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\IcjToExcelController.Designer.cs">
+      <DependentUpon>IcjToExcelController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ImportAllIcjToExcelController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ImportAllIcjToExcelController.Designer.cs">
+      <DependentUpon>ImportAllIcjToExcelController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\IncExpTypeSetReclassController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\IncExpTypeSetReclassController.Designer.cs">
+      <DependentUpon>IncExpTypeSetReclassController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\IncomeAndExpense02DrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\IncomeAndExpense02DrillDownController.Designer.cs">
+      <DependentUpon>IncomeAndExpense02DrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\IncomeExpenseBuffViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\IncomeExpenseBuffViewController.Designer.cs">
+      <DependentUpon>IncomeExpenseBuffViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\IncomeExpenseDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\IncomeExpenseDrillDownController.Designer.cs">
+      <DependentUpon>IncomeExpenseDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InitializedOdoLog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InitializedOdoLog.Designer.cs">
+      <DependentUpon>InitializedOdoLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvAdjustmentToExcelController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvAdjustmentToExcelController.Designer.cs">
+      <DependentUpon>InvAdjustmentToExcelController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InventoryControlJournalShowSerialNosAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InventoryControlJournalShowSerialNosAction.Designer.cs">
+      <DependentUpon>InventoryControlJournalShowSerialNosAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceDetailShowItemTracking.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceDetailShowItemTracking.Designer.cs">
+      <DependentUpon>InvoiceDetailShowItemTracking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceDolefilTripAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceDolefilTripAction.Designer.cs">
+      <DependentUpon>InvoiceDolefilTripAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceGensetAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceGensetAction.Designer.cs">
+      <DependentUpon>InvoiceGensetAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceInvoiceAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceInvoiceAction.Designer.cs">
+      <DependentUpon>InvoiceInvoiceAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceKDAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceKDAction.Designer.cs">
+      <DependentUpon>InvoiceKDAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceOtherTripAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceOtherTripAction.Designer.cs">
+      <DependentUpon>InvoiceOtherTripAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceShuntingAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceShuntingAction.Designer.cs">
+      <DependentUpon>InvoiceShuntingAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceStanfilcoTripAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceStanfilcoTripAction.Designer.cs">
+      <DependentUpon>InvoiceStanfilcoTripAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\InvoiceWorkOrderAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\InvoiceWorkOrderAction.Designer.cs">
+      <DependentUpon>InvoiceWorkOrderAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\IssueTireController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\IssueTireController.Designer.cs">
+      <DependentUpon>IssueTireController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\KDViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\KDViewController.Designer.cs">
+      <DependentUpon>KDViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ListViewController.Designer.cs">
+      <DependentUpon>ListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ListWorkOrderMechanicsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ListWorkOrderMechanicsController.Designer.cs">
+      <DependentUpon>ListWorkOrderMechanicsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\LogOdometer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\LogOdometer.Designer.cs">
+      <DependentUpon>LogOdometer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MarkAsCommissionPaidController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\MarkAsCommissionPaidController.Designer.cs">
+      <DependentUpon>MarkAsCommissionPaidController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MarkAsCommissionUnPaidController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\MarkAsCommissionUnPaidController.Designer.cs">
+      <DependentUpon>MarkAsCommissionUnPaidController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MarkToValidateGenJournalController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\MarkToValidateGenJournalController.Designer.cs">
+      <DependentUpon>MarkToValidateGenJournalController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MarkUnmarkForDolePayrollController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\MarkUnmarkForDolePayrollController.Designer.cs">
+      <DependentUpon>MarkUnmarkForDolePayrollController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MigrateToGensetIncomeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\MigrateToGensetIncomeController.Designer.cs">
+      <DependentUpon>MigrateToGensetIncomeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MoveToMovementGroupController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\MoveToMovementGroupController.Designer.cs">
+      <DependentUpon>MoveToMovementGroupController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MoveToMovementGroupFromAnyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\MoveToMovementGroupFromAnyController.Designer.cs">
+      <DependentUpon>MoveToMovementGroupFromAnyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NetBillingSetupDetailViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\NetBillingSetupDetailViewController.Designer.cs">
+      <DependentUpon>NetBillingSetupDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NewBankAccountController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\NewBankAccountController.Designer.cs">
+      <DependentUpon>NewBankAccountController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NLSGeneratorChangeCaptionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\NLSGeneratorChangeCaptionController.Designer.cs">
+      <DependentUpon>NLSGeneratorChangeCaptionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NLSGeneratorChangeGridColController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\NLSGeneratorChangeGridColController.Designer.cs">
+      <DependentUpon>NLSGeneratorChangeGridColController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\OpenRelatedRecordsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\OpenTripDetailFromCombineTripsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\OpenTripDetailFromCombineTripsViewController.Designer.cs">
+      <DependentUpon>OpenTripDetailFromCombineTripsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ParameterizedActionWindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ParameterizedActionWindowController.Designer.cs">
+      <DependentUpon>ParameterizedActionWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PartsUsagePivotDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PartsUsagePivotDrillDownController.Designer.cs">
+      <DependentUpon>PartsUsagePivotDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PayBillSuppressConfirmation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PayBillSuppressConfirmation.Designer.cs">
+      <DependentUpon>PayBillSuppressConfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PaySelectedBillAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PaySelectedBillAction.Designer.cs">
+      <DependentUpon>PaySelectedBillAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PayVendorBillFromNavigationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PayVendorBillFromNavigationController.Designer.cs">
+      <DependentUpon>PayVendorBillFromNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PettyCashGetFromPOController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PettyCashGetFromPOController.Designer.cs">
+      <DependentUpon>PettyCashGetFromPOController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PhysicalAdjustmentApplyAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PhysicalAdjustmentApplyAction.Designer.cs">
+      <DependentUpon>PhysicalAdjustmentApplyAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PhysicalAdjustmentDetailShowItemTracking.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PhysicalAdjustmentDetailShowItemTracking.Designer.cs">
+      <DependentUpon>PhysicalAdjustmentDetailShowItemTracking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PivotDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PivotDrillDownController.Designer.cs">
+      <DependentUpon>PivotDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PostDriverPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PostDriverPayroll.Designer.cs">
+      <DependentUpon>PostDriverPayroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PostDriverPayroll2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PostDriverPayroll2.Designer.cs">
+      <DependentUpon>PostDriverPayroll2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PostDriverPayroll3Controller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PostDriverPayroll3Controller.Designer.cs">
+      <DependentUpon>PostDriverPayroll3Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PostSelectedTransactions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PostSelectedTransactions.Designer.cs">
+      <DependentUpon>PostSelectedTransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PostStaffPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PostStaffPayroll.Designer.cs">
+      <DependentUpon>PostStaffPayroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostBrandnewTubelessController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostBrandnewTubelessController.Designer.cs">
+      <DependentUpon>PrintAccumCostBrandnewTubelessController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostBrandnewTubeTypeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostBrandnewTubeTypeController.Designer.cs">
+      <DependentUpon>PrintAccumCostBrandnewTubeTypeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostRecapTubelessController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostRecapTubelessController.Designer.cs">
+      <DependentUpon>PrintAccumCostRecapTubelessController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostRecapTubeTypeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PrintAccumCostRecapTubeTypeController.Designer.cs">
+      <DependentUpon>PrintAccumCostRecapTubeTypeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverDoleAjustmentsDeductionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverDoleAjustmentsDeductionController.Designer.cs">
+      <DependentUpon>ProcessDriverDoleAjustmentsDeductionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverDolePayrollController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverDolePayrollController.Designer.cs">
+      <DependentUpon>ProcessDriverDolePayrollController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverNonDoleAjustmentsDeductionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverNonDoleAjustmentsDeductionController.Designer.cs">
+      <DependentUpon>ProcessDriverNonDoleAjustmentsDeductionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverNonDolePayrollController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProcessDriverNonDolePayrollController.Designer.cs">
+      <DependentUpon>ProcessDriverNonDolePayrollController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProcessStaffPayrollController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProcessStaffPayrollController.Designer.cs">
+      <DependentUpon>ProcessStaffPayrollController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PuchaseOrderLineController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PuchaseOrderLineController.Designer.cs">
+      <DependentUpon>PuchaseOrderLineController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PurchMovAnalysisToExcelController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PurchMovAnalysisToExcelController.Designer.cs">
+      <DependentUpon>PurchMovAnalysisToExcelController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PurchMovementGeneratorController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\PurchMovementGeneratorController.Designer.cs">
+      <DependentUpon>PurchMovementGeneratorController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiptDetailShowItemTracking.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiptDetailShowItemTracking.Designer.cs">
+      <DependentUpon>ReceiptDetailShowItemTracking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiptFuelTagToTripController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiptFuelTagToTripController.Designer.cs">
+      <DependentUpon>ReceiptFuelTagToTripController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiptLineToEcsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiptLineToEcsController.Designer.cs">
+      <DependentUpon>ReceiptLineToEcsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiptLineToTOController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiptLineToTOController.Designer.cs">
+      <DependentUpon>ReceiptLineToTOController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveFromRetreadersController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveFromRetreadersController.Designer.cs">
+      <DependentUpon>ReceiveFromRetreadersController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiptLineToWOController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiptLineToWOController.Designer.cs">
+      <DependentUpon>ReceiptLineToWOController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveCollection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveCollection.Designer.cs">
+      <DependentUpon>ReceiveCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveDoleTripStatePayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveDoleTripStatePayment.Designer.cs">
+      <DependentUpon>ReceiveDoleTripStatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveFuelAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveFuelAction.Designer.cs">
+      <DependentUpon>ReceiveFuelAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveFuelStatementPayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveFuelStatementPayment.Designer.cs">
+      <DependentUpon>ReceiveFuelStatementPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveGensetStatePayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveGensetStatePayment.Designer.cs">
+      <DependentUpon>ReceiveGensetStatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveKDStatePayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveKDStatePayment.Designer.cs">
+      <DependentUpon>ReceiveKDStatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveOtherTripStatePayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveOtherTripStatePayment.Designer.cs">
+      <DependentUpon>ReceiveOtherTripStatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceivePaymentAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceivePaymentAction.Designer.cs">
+      <DependentUpon>ReceivePaymentAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveReceiptAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveReceiptAction.Designer.cs">
+      <DependentUpon>ReceiveReceiptAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveSelectedFuelAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveSelectedFuelAction.Designer.cs">
+      <DependentUpon>ReceiveSelectedFuelAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveShuntingStatePayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveShuntingStatePayment.Designer.cs">
+      <DependentUpon>ReceiveShuntingStatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReceiveStanTripStatePayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReceiveStanTripStatePayment.Designer.cs">
+      <DependentUpon>ReceiveStanTripStatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileDoleTripStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileDoleTripStatement.Designer.cs">
+      <DependentUpon>ReconcileDoleTripStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileFuelStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileFuelStatement.Designer.cs">
+      <DependentUpon>ReconcileFuelStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileGensetStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileGensetStatement.Designer.cs">
+      <DependentUpon>ReconcileGensetStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileInvoice.Designer.cs">
+      <DependentUpon>ReconcileInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileKDStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileKDStatement.Designer.cs">
+      <DependentUpon>ReconcileKDStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileOtherTripStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileOtherTripStatement.Designer.cs">
+      <DependentUpon>ReconcileOtherTripStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileShuntingStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileShuntingStatement.Designer.cs">
+      <DependentUpon>ReconcileShuntingStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReconcileStanTripStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReconcileStanTripStatement.Designer.cs">
+      <DependentUpon>ReconcileStanTripStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RegisterCargo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RegisterCargo.Designer.cs">
+      <DependentUpon>RegisterCargo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RegisterCargoDolefil.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RegisterCargoDolefil.Designer.cs">
+      <DependentUpon>RegisterCargoDolefil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RegisterCargoOther.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RegisterCargoOther.Designer.cs">
+      <DependentUpon>RegisterCargoOther.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RegisterFuel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RegisterFuel.Designer.cs">
+      <DependentUpon>RegisterFuel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RegisterFuelDole.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RegisterFuelDole.Designer.cs">
+      <DependentUpon>RegisterFuelDole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RegisterFuelOther.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RegisterFuelOther.Designer.cs">
+      <DependentUpon>RegisterFuelOther.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReleaseCheckAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReleaseCheckAction.Designer.cs">
+      <DependentUpon>ReleaseCheckAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReleaseCheckVoucherAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReleaseCheckVoucherAction.Designer.cs">
+      <DependentUpon>ReleaseCheckVoucherAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReleaseECSController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReleaseECSController.Designer.cs">
+      <DependentUpon>ReleaseECSController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReleaseMultiCheckVoucherAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReleaseMultiCheckVoucherAction.Designer.cs">
+      <DependentUpon>ReleaseMultiCheckVoucherAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReleaseSelectedECSController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReleaseSelectedECSController.Designer.cs">
+      <DependentUpon>ReleaseSelectedECSController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReleaseSelectedVoucherController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReleaseSelectedVoucherController.Designer.cs">
+      <DependentUpon>ReleaseSelectedVoucherController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RemoveNotIncludedInDriverPayrollBatchController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RemoveNotIncludedInDriverPayrollBatchController.Designer.cs">
+      <DependentUpon>RemoveNotIncludedInDriverPayrollBatchController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CloseCheckVoucherController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CloseCheckVoucherController.Designer.cs">
+      <DependentUpon>CloseCheckVoucherController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReqCarryoutTransactionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReqCarryoutTransactionController.Designer.cs">
+      <DependentUpon>ReqCarryoutTransactionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ResetVerificationController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ResetVerificationController.Designer.cs">
+      <DependentUpon>ResetVerificationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReturnCreditMemoAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReturnCreditMemoAction.Designer.cs">
+      <DependentUpon>ReturnCreditMemoAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReturnDebitMemoAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ReturnDebitMemoAction.Designer.cs">
+      <DependentUpon>ReturnDebitMemoAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevalidaeOnHandController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevalidaeOnHandController.Designer.cs">
+      <DependentUpon>RevalidaeOnHandController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevalidateIncomeVsExpenseController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevalidateIncomeVsExpenseController.Designer.cs">
+      <DependentUpon>RevalidateIncomeVsExpenseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevolvingAttachedToController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevolvingAttachedToController.Designer.cs">
+      <DependentUpon>RevolvingAttachedToController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevolvingDettachFromController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevolvingDettachFromController.Designer.cs">
+      <DependentUpon>RevolvingDettachFromController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevolvingPartDisposalController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevolvingPartDisposalController.Designer.cs">
+      <DependentUpon>RevolvingPartDisposalController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevolvingPartToMaintenanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevolvingPartToMaintenanceController.Designer.cs">
+      <DependentUpon>RevolvingPartToMaintenanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevolvingPartTransferController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevolvingPartTransferController.Designer.cs">
+      <DependentUpon>RevolvingPartTransferController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RevolvingReturnedController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RevolvingReturnedController.Designer.cs">
+      <DependentUpon>RevolvingReturnedController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\RollbackForwardedEmployeesChargeSlipController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\RollbackForwardedEmployeesChargeSlipController.Designer.cs">
+      <DependentUpon>RollbackForwardedEmployeesChargeSlipController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SalesHistoryFullTextSearchController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SalesHistoryFullTextSearchController.Designer.cs">
+      <DependentUpon>SalesHistoryFullTextSearchController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SelectAllUndeposited.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SelectAllUndeposited.Designer.cs">
+      <DependentUpon>SelectAllUndeposited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SellBatteryController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SellBatteryController.Designer.cs">
+      <DependentUpon>SellBatteryController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SellRevolvingPartsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SellRevolvingPartsController.Designer.cs">
+      <DependentUpon>SellRevolvingPartsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SetPdWkStanfilcoController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SetPdWkStanfilcoController.Designer.cs">
+      <DependentUpon>SetPdWkStanfilcoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ShiftCalculationsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ShiftCalculationsViewController.Designer.cs">
+      <DependentUpon>ShiftCalculationsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ShowCountDetailsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ShowCountDetailsController.Designer.cs">
+      <DependentUpon>ShowCountDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ShowDriverPayroll3TripDetailsIncController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ShowDriverPayroll3TripDetailsIncController.Designer.cs">
+      <DependentUpon>ShowDriverPayroll3TripDetailsIncController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsCheckInController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsCheckInController.Designer.cs">
+      <DependentUpon>SmallToolsCheckInController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsCheckOutController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsCheckOutController.Designer.cs">
+      <DependentUpon>SmallToolsCheckOutController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsForDisposalController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsForDisposalController.Designer.cs">
+      <DependentUpon>SmallToolsForDisposalController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsInitializeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsInitializeController.Designer.cs">
+      <DependentUpon>SmallToolsInitializeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsReserveController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsReserveController.Designer.cs">
+      <DependentUpon>SmallToolsReserveController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsToMaintenanceController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsToMaintenanceController.Designer.cs">
+      <DependentUpon>SmallToolsToMaintenanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsTransferController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\SmallToolsTransferController.Designer.cs">
+      <DependentUpon>SmallToolsTransferController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\StanfilcoTripViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\StanfilcoTripViewController.Designer.cs">
+      <DependentUpon>StanfilcoTripViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TagFuelTripUsageController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TagFuelTripUsageController.Designer.cs">
+      <DependentUpon>TagFuelTripUsageController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TenderCashPaymentController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TenderCashPaymentController.Designer.cs">
+      <DependentUpon>TenderCashPaymentController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireActionsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireActionsController.Designer.cs">
+      <DependentUpon>TireActionsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireCarryOutController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireCarryOutController.Designer.cs">
+      <DependentUpon>TireCarryOutController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireExpenseDetailsBufferDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireExpenseDetailsBufferDrillDownController.Designer.cs">
+      <DependentUpon>TireExpenseDetailsBufferDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireForSaleController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireForSaleController.Designer.cs">
+      <DependentUpon>TireForSaleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionAndAnalysisController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionAndAnalysisController.Designer.cs">
+      <DependentUpon>TireInspectionAndAnalysisController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionAndAnalysisController02.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionAndAnalysisController02.Designer.cs">
+      <DependentUpon>TireInspectionAndAnalysisController02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionEntryController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionEntryController.Designer.cs">
+      <DependentUpon>TireInspectionEntryController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionPrintController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireInspectionPrintController.Designer.cs">
+      <DependentUpon>TireInspectionPrintController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TireItemAccumulatedCostController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TireItemAccumulatedCostController.Designer.cs">
+      <DependentUpon>TireItemAccumulatedCostController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TiremanActivityController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TiremanActivityController.Designer.cs">
+      <DependentUpon>TiremanActivityController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TiremanActivityViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TiremanActivityViewController.Designer.cs">
+      <DependentUpon>TiremanActivityViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TiresAccumulatedCostDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TiresAccumulatedCostDrillDownController.Designer.cs">
+      <DependentUpon>TiresAccumulatedCostDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TransactionDependencyController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransactionDependencyController.Designer.cs">
+      <DependentUpon>TransactionDependencyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TransferFunds.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransferFunds.Designer.cs">
+      <DependentUpon>TransferFunds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TransferOrderDetailShowItemTracking.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransferOrderDetailShowItemTracking.Designer.cs">
+      <DependentUpon>TransferOrderDetailShowItemTracking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TransferOrderReceiveAction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransferOrderReceiveAction.Designer.cs">
+      <DependentUpon>TransferOrderReceiveAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TransferOrderToWOController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransferOrderToWOController.Designer.cs">
+      <DependentUpon>TransferOrderToWOController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TreeListController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TreeListController.Designer.cs">
+      <DependentUpon>TreeListController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TruckIncExpSelUnitsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TruckIncExpSelUnitsController.Designer.cs">
+      <DependentUpon>TruckIncExpSelUnitsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TruckIncomeExpenseDetailViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TruckIncomeExpenseDetailViewController.Designer.cs">
+      <DependentUpon>TruckIncomeExpenseDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TruckRegistryDrillDownController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TruckRegistryDrillDownController.Designer.cs">
+      <DependentUpon>TruckRegistryDrillDownController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UnpaidStanfilcoTripsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UnpaidStanfilcoTripsViewController.Designer.cs">
+      <DependentUpon>UnpaidStanfilcoTripsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UnselectAllUndeposited.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UnselectAllUndeposited.Designer.cs">
+      <DependentUpon>UnselectAllUndeposited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UntagFuelTripUsageController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UntagFuelTripUsageController.Designer.cs">
+      <DependentUpon>UntagFuelTripUsageController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateBalanceCustomer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateBalanceCustomer.Designer.cs">
+      <DependentUpon>UpdateBalanceCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateDoleFromTariffValues.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateDoleFromTariffValues.Designer.cs">
+      <DependentUpon>UpdateDoleFromTariffValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateExpenseTypeController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateExpenseTypeController.Designer.cs">
+      <DependentUpon>UpdateExpenseTypeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateMovGrpDetWhseToCountController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateMovGrpDetWhseToCountController.Designer.cs">
+      <DependentUpon>UpdateMovGrpDetWhseToCountController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateStanFromTariffValues.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateStanFromTariffValues.Designer.cs">
+      <DependentUpon>UpdateStanFromTariffValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateVendorBalance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateVendorBalance.Designer.cs">
+      <DependentUpon>UpdateVendorBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateWoRefsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateWoRefsController.Designer.cs">
+      <DependentUpon>UpdateWoRefsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UploadCheckinCheckout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UploadCheckinCheckout.Designer.cs">
+      <DependentUpon>UploadCheckinCheckout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UploadCorrectionWorksheetController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UploadCorrectionWorksheetController.Designer.cs">
+      <DependentUpon>UploadCorrectionWorksheetController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UploadCountSheetController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UploadCountSheetController.Designer.cs">
+      <DependentUpon>UploadCountSheetController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UploadOvertimeAndLeaves.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UploadOvertimeAndLeaves.Designer.cs">
+      <DependentUpon>UploadOvertimeAndLeaves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenerateExpensesPerFacilityController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenerateExpensesPerFacilityController.Designer.cs">
+      <DependentUpon>GenerateExpensesPerFacilityController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\VoidBankTransaction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\VoidBankTransaction.Designer.cs">
+      <DependentUpon>VoidBankTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\WinCaptionController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\WinShowCustomFormWindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ZeroOutItemsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ZeroOutItemsController.Designer.cs">
+      <DependentUpon>ZeroOutItemsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ApplicationCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DrilldownEnumHelper.cs" />
+    <Compile Include="Editors\CalcDecimalWinPropertEditor.cs" />
+    <Compile Include="Editors\CustomDateTimeEditor.cs" />
+    <Compile Include="Editors\CustomDateTimeEditor2.cs" />
+    <Compile Include="Editors\CustomDateTimeEditor3.cs" />
+    <Compile Include="Editors\CustomTimeOnlyEditor.cs" />
+    <Compile Include="Editors\LabelControlEditor.cs" />
+    <Compile Include="Editors\LabelDecControlEditor.cs" />
+    <Compile Include="Editors\MeterTypePropertyEditor.cs" />
+    <Compile Include="Editors\MonospaceStringPropertyEditor.cs" />
+    <Compile Include="Editors\PercentDecimalWinPropertyEditor.cs" />
+    <Compile Include="Editors\ProgressBarPropertyEditor.cs" />
+    <Compile Include="Editors\SelectExcelFileEditor.cs" />
+    <Compile Include="Editors\TireServiceInsConDetailsPropertyEditor.cs" />
+    <Compile Include="Editors\TypeOfItemsPropertyEditor.cs" />
+    <Compile Include="Editors\UpperCaseStringWinPropertyEditor.cs" />
+    <Compile Include="Editors\ItemMovSelectedWhseDetPropertyEditor.cs" />
+    <Compile Include="Editors\WinCheckedListBoxPropertyEditor.cs" />
+    <Compile Include="Editors\WinCustomUserControlViewItem.cs" />
+    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="ExpenseAnalyticPivotBuffer.cs" />
+    <Compile Include="GridColumnAutoWidthController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GridColumnAutoWidthController.Designer.cs">
+      <DependentUpon>GridColumnAutoWidthController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMovementGroupDetSortController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ItemMovementGroupDetSortController.Designer.cs">
+      <DependentUpon>ItemMovementGroupDetSortController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMovFreqAnalDetListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ItemMovFreqAnalDetListViewController.Designer.cs">
+      <DependentUpon>ItemMovFreqAnalDetListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartsUsageTemp.cs" />
+    <Compile Include="PayDetailViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PayDetailViewController.Designer.cs">
+      <DependentUpon>PayDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressForm.Designer.cs">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SessionEventArgs.cs" />
+    <Compile Include="TempAccountCollection.cs" />
+    <Compile Include="TempAdjustmentData.cs" />
+    <Compile Include="TempEmployeeCollection.cs" />
+    <Compile Include="TempIncExp.cs" />
+    <Compile Include="Templates\DetailViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\DetailViewForm.Designer.cs">
+      <DependentUpon>DetailViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TireExpenseDetailsBuffer.cs" />
+    <Compile Include="UomBuffer.cs" />
+    <Compile Include="UploadCalculatedRecords.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UploadCalculatedRecords.Designer.cs">
+      <DependentUpon>UploadCalculatedRecords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadCalculatedRecordsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadCalculatedRecordsForm.Designer.cs">
+      <DependentUpon>UploadCalculatedRecordsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadCheckinCheckoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadCheckinCheckoutForm.Designer.cs">
+      <DependentUpon>UploadCheckinCheckoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadCorrectionWorksheetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadCorrectionWorksheetForm.Designer.cs">
+      <DependentUpon>UploadCorrectionWorksheetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadCountSheetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadCountSheetForm.Designer.cs">
+      <DependentUpon>UploadCountSheetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadOvertimeAndLeavesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadOvertimeAndLeavesForm.Designer.cs">
+      <DependentUpon>UploadOvertimeAndLeavesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinGroupFooterViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinGroupFooterViewController.Designer.cs">
+      <DependentUpon>WinGroupFooterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinModule.Designer.cs">
+      <DependentUpon>WinModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controllers\AddShuntingController.resx">
+      <DependentUpon>AddShuntingController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\AutoCorrectOdoController.resx">
+      <DependentUpon>AutoCorrectOdoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\CalculatePartialPayController.resx">
+      <DependentUpon>CalculatePartialPayController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\ChangeCompTemplateStanfilcoController.resx">
+      <DependentUpon>ChangeCompTemplateStanfilcoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\ExpandAllAccounts.resx">
+      <DependentUpon>ExpandAllAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\ExpandBSDetails.resx">
+      <DependentUpon>ExpandBSDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\ExpandISDetails.resx">
+      <DependentUpon>ExpandISDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\FillPersonResponsibleController.resx">
+      <DependentUpon>FillPersonResponsibleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\GenerateMultiCVPayDetailsController.resx">
+      <DependentUpon>GenerateMultiCVPayDetailsController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\InitializedOdoLog.resx">
+      <DependentUpon>InitializedOdoLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\ReceiptLineToWOController.resx">
+      <DependentUpon>ReceiptLineToWOController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\SalesHistoryFullTextSearchController.resx">
+      <DependentUpon>SalesHistoryFullTextSearchController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\TransferOrderToWOController.resx">
+      <DependentUpon>TransferOrderToWOController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\UpdateBalanceCustomer.resx">
+      <DependentUpon>UpdateBalanceCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\UpdateVendorBalance.resx">
+      <DependentUpon>UpdateVendorBalance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Templates\DetailViewForm.resx">
+      <DependentUpon>DetailViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadCalculatedRecordsForm.resx">
+      <DependentUpon>UploadCalculatedRecordsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadCheckinCheckoutForm.resx">
+      <DependentUpon>UploadCheckinCheckoutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadCorrectionWorksheetForm.resx">
+      <DependentUpon>UploadCorrectionWorksheetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadCountSheetForm.resx">
+      <DependentUpon>UploadCountSheetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadOvertimeAndLeavesForm.resx">
+      <DependentUpon>UploadOvertimeAndLeavesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinModule.resx">
+      <DependentUpon>WinModule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controllers\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editors\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\ReadMe.txt" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GAVELISv2.Module\GAVELISv2.Module.csproj">
+      <Project>{74385B17-26E4-438D-A8C8-00F710E6A5A9}</Project>
+      <Name>GAVELISv2.Module</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
